@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ContentfulService } from './contentful.service';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,12 @@ import { ContentfulService } from './contentful.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  events$ = from(this.contentfulService.getEvents());
+
   constructor(private contentfulService: ContentfulService) {
-    contentfulService.getEvents();
+  }
+
+  getFields(event: Event) {
+    return Object.values(event);
   }
 }
