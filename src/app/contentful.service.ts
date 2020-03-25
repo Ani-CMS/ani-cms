@@ -31,7 +31,7 @@ export class ContentfulService {
         return {
           ...item.fields,
           link: item.fields.link.content[0].content[1].data.uri,
-          image: item.fields.image.fields.file.url
+          image: item?.fields?.image?.fields?.file?.url
         };
       });
     });
