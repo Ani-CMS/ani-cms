@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { createClient } from 'contentful';
+import { from, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 export interface Event {
   title: string;
@@ -21,12 +23,8 @@ export class ContentfulService {
     accessToken: 'yG8c6btCdKehQU8Of7viYjYcwg9ASsZJsRZ6gEKMJw8'
   });
 
-  // TODO Cache this, this will not change while user is on site
-  getEvents(query?: object): Promise<Event[]> {
-    return this.client.getEntries<Event[]>({
-      content_type: 'event',
-      ...query
-    }).then(response => {
+  events$: Observable<Event[]> = from(this.client.getEntries<Event[]>({content_type: 'event'})).pipe(
+    map(response => {
       return response.items.map((item: any) => {
         return {
           ...item.fields,
@@ -34,6 +32,6 @@ export class ContentfulService {
           image: item?.fields?.image?.fields?.file?.url
         };
       });
-    });
-  }
+    }),
+  );
 }

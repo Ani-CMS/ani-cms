@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { from } from 'rxjs';
 import { ContentfulService } from '../../contentful.service';
 
 @Component({
@@ -8,7 +7,7 @@ import { ContentfulService } from '../../contentful.service';
   styleUrls: ['./upcoming.page.css']
 })
 export class UpcomingPage {
-  events$ = from(this.contentfulService.getEvents());
+  events$ = this.contentfulService.events$;
 
   constructor(private contentfulService: ContentfulService) {
   }
