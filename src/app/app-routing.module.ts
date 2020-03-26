@@ -6,11 +6,23 @@ import { TextsPage } from './pages/texts/texts-page.component';
 
 const routes: Routes = [
   {
+    path: 'works',
+    component: UpcomingPage
+  },
+  {
+    path: 'films',
+    component: TextsPage
+  },
+  {
     path: 'upcoming',
     component: UpcomingPage
   },
   {
     path: 'texts',
+    component: TextsPage
+  },
+  {
+    path: 'about',
     component: TextsPage
   },
 ];
