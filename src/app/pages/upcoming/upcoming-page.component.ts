@@ -11,6 +11,5 @@ export class UpcomingPage {
   events$ = from(this.contentfulService.getEvents());
 
   constructor(private contentfulService: ContentfulService) {
-    console.log(1);
   }
 }
