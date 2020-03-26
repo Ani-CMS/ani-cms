@@ -1,6 +1,6 @@
 <a [href]="event.link" class="title">{{event.title}}</a>
-<span>{{event.description}}</span>
-<span>{{event.from}}</span>
-<span>{{event.until}}</span>
-<span>{{event.location}}</span>
-<img [src]="event.image" alt="">
+<span *ngIf="event.description">{{event.description}}</span>
+<span *ngIf="event.from">{{event.from}}</span>
+<span *ngIf="event.until">{{event.until}}</span>
+<span *ngIf="event.location">{{event.location}}</span>
+<img *ngIf="event.image" [src]="event.image" alt="">
