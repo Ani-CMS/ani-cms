@@ -2,7 +2,8 @@ import { Component, Input, OnInit } from '@angular/core'
 
 export interface ExternalText {
   title: string
-  url: string
+  link: string
+  description: string
 }
 
 @Component({
