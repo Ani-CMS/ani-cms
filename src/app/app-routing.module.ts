@@ -6,14 +6,21 @@ import { AboutComponent } from './pages/about/about.component';
 import { WorksComponent } from './pages/works/works.component';
 import { FilmsComponent } from './pages/films/films.component';
 
-
 const routes: Routes = [
   {
     path: 'works',
     component: WorksComponent,
   },
   {
+    path: 'works/:id',
+    component: WorksComponent,
+  },
+  {
     path: 'films',
+    component: FilmsComponent,
+  },
+  {
+    path: 'films/:id',
     component: FilmsComponent,
   },
   {
@@ -32,7 +39,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {
 }
