@@ -4,14 +4,16 @@ import { from, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { ExternalText } from './pages/texts/external-text/external-text.component'
 
+// TODO Ani jeder subheader gleichers pattern, stylen mit nth-child -> dann nur title laden. mehrere links auf eine reohe wegen mehr platz
+
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ContentfulService {
   private client = createClient({
     space: 'hy4v2om2p6ry',
     environment: 'master',
-    accessToken: 'yG8c6btCdKehQU8Of7viYjYcwg9ASsZJsRZ6gEKMJw8',
+    accessToken: 'yG8c6btCdKehQU8Of7viYjYcwg9ASsZJsRZ6gEKMJw8'
   })
 
   events$: Observable<Event[]> = from(
