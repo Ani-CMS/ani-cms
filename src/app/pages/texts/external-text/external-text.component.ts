@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 
 export interface ExternalText {
   title: string
@@ -8,10 +8,14 @@ export interface ExternalText {
 @Component({
   selector: 'app-external-text',
   templateUrl: './external-text.component.html',
-  styleUrls: ['./external-text.component.css'],
+  styleUrls: ['./external-text.component.css']
 })
 export class ExternalTextComponent implements OnInit {
-  constructor() {}
+  @Input() externalText: ExternalText
 
-  ngOnInit(): void {}
+  constructor() {
+  }
+
+  ngOnInit(): void {
+  }
 }

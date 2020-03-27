@@ -1,3 +1,7 @@
 <main>
-  <h1>Texts</h1>
+  <app-external-text
+    *ngFor="let externalText of externalText$ | async"
+    [externalText]="externalText"
+  >
+  </app-external-text>
 </main>

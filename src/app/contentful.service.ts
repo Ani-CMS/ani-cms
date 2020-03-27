@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core'
 import { createClient } from 'contentful'
 import { from, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
+import { ExternalText } from './pages/texts/external-text/external-text.component'
 
 @Injectable({
   providedIn: 'root',
@@ -14,16 +15,33 @@ export class ContentfulService {
   })
 
   events$: Observable<Event[]> = from(
-    this.client.getEntries<Event[]>({ content_type: 'event' })
+    this.client.getEntries({ content_type: 'event' })
   ).pipe(
     map((response) => {
       return response.items.map((item: any) => {
         return {
           ...item.fields,
-          link: item.fields.link.content[0].content[1].data.uri,
-          image: item?.fields?.image?.fields?.file?.url,
+          link: this.getLink(item.fields.link),
+          image: item?.fields?.image?.fields?.file?.url
         }
       })
     })
   )
+
+  externalTexts$: Observable<ExternalText[]> = from(
+    this.client.getEntries({ content_type: 'externalText' })
+  ).pipe(
+    map((response) => {
+      return response.items.map((item: any) => {
+        return {
+          ...item.fields,
+          link: this.getLink(item.fields.link)
+        }
+      })
+    })
+  )
+
+  private getLink(link): string {
+    return link.content[0].content[1].data.uri
+  }
 }
