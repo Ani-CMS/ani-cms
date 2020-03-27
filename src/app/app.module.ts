@@ -7,6 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { EventComponent } from './components/event/event.component';
 import { TextsComponent } from './pages/texts/texts.component';
 import { UpcomingComponent } from './pages/upcoming/upcoming.component';
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { UpcomingComponent } from './pages/upcoming/upcoming.component';
     EventComponent,
     HeaderComponent,
     TextsComponent,
-    UpcomingComponent
+    UpcomingComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
