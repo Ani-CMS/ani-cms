@@ -3,16 +3,6 @@ import { createClient } from 'contentful';
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-export interface Event {
-  title: string;
-  link: string;
-  description: string;
-  from: string;
-  until: string;
-  location: string;
-  image: string;
-}
-
 @Injectable({
   providedIn: 'root',
 })

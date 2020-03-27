@@ -1,5 +1,14 @@
 import { Component, Input } from '@angular/core';
-import { Event } from '../../../contentful.service';
+
+export interface Event {
+  title: string;
+  link: string;
+  description: string;
+  from: string;
+  until: string;
+  location: string;
+  image: string;
+}
 
 @Component({
   selector: 'app-event',
