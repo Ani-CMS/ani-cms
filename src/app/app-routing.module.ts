@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UpcomingPage } from './pages/upcoming/upcoming-page.component';
 import { TextsComponent } from './pages/texts/texts.component';
+import { UpcomingComponent } from './pages/upcoming/upcoming.component';
 
 
 const routes: Routes = [
@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'upcoming',
-    component: UpcomingPage
+    component: UpcomingComponent
   },
   {
     path: 'texts',
