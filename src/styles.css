@@ -3,6 +3,7 @@ body {
   font-size: calc(0.9rem + 0.3 * ((100vw - 320px) / 100));
   margin: 0;
   padding: 0 3vw;
+  color: #003080;
 }
 
 @media screen and (max-width: 812px) {
@@ -23,6 +24,5 @@ a {
 }
 
 main {
-  color: #003080;
   line-height: 2em;
 }

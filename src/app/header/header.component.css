@@ -16,6 +16,7 @@ ul {
   list-style: none;
   text-transform: uppercase;
   margin: 0;
+  margin-left: 4.5em; /* TODO Remove this if you want content to align with header */
   padding: 0;
 }
 
