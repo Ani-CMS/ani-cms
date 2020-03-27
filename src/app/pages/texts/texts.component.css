@@ -1,0 +1,13 @@
+app-external-text {
+  margin: 2em 0;
+  display: block;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--secondary-color);
+  font-size: inherit;
+}

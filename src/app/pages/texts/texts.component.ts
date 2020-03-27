@@ -17,4 +17,8 @@ export class TextsComponent implements OnInit {
   ngOnInit(): void {
     console.log(1)
   }
+
+  onUp() {
+    window.scrollTo(0, 0)
+  }
 }
