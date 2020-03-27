@@ -1,6 +1,7 @@
 body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: calc(0.9rem + 0.3 * ((100vw - 320px) / 100));
+  margin: 0;
 }
 
 @media screen and (max-width: 812px) {
