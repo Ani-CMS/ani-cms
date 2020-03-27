@@ -3,20 +3,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { TextsComponent } from './pages/texts/texts.component';
 import { UpcomingComponent } from './pages/upcoming/upcoming.component';
 import { AboutComponent } from './pages/about/about.component';
-import { WorksSubHeaderComponent } from './sub-headers/works-sub-header/works-sub-header.component';
-import { FilmsSubHeaderComponent } from './sub-headers/films-sub-header/films-sub-header.component';
+import { WorksComponent } from './pages/works/works.component';
+import { FilmsComponent } from './pages/films/films.component';
 
 
 const routes: Routes = [
   {
     path: 'works',
-    component: WorksSubHeaderComponent,
-    outlet: 'sub-headers'
+    component: WorksComponent,
   },
   {
     path: 'films',
-    component: FilmsSubHeaderComponent,
-    outlet: 'sub-headers'
+    component: FilmsComponent,
   },
   {
     path: 'upcoming',
@@ -38,3 +36,8 @@ const routes: Routes = [
 })
 export class AppRoutingModule {
 }
+
+/*
+TODO REMOVE SECOND RouterOutlet add one page per routes and put the supheader in the page and use regular child routes
+EVERY PAGE NEEDS MAIN AND A SECOND ROUTEROUTLET, not really evers page
+*/
