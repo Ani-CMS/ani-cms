@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ContentfulService } from '../../contentful.service';
+import { Component, OnInit } from '@angular/core'
+import { ContentfulService } from '../../contentful.service'
 
 @Component({
   selector: 'app-upcoming',
@@ -7,11 +7,9 @@ import { ContentfulService } from '../../contentful.service';
   styleUrls: ['./upcoming.component.css'],
 })
 export class UpcomingComponent implements OnInit {
-  events$ = this.contentfulService.events$;
+  events$ = this.contentfulService.events$
 
-  constructor(private contentfulService: ContentfulService) {
-  }
+  constructor(private contentfulService: ContentfulService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

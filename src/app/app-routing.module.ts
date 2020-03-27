@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { TextsComponent } from './pages/texts/texts.component';
-import { UpcomingComponent } from './pages/upcoming/upcoming.component';
-import { AboutComponent } from './pages/about/about.component';
-import { WorksComponent } from './pages/works/works.component';
-import { FilmsComponent } from './pages/films/films.component';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
+import { TextsComponent } from './pages/texts/texts.component'
+import { UpcomingComponent } from './pages/upcoming/upcoming.component'
+import { AboutComponent } from './pages/about/about.component'
+import { WorksComponent } from './pages/works/works.component'
+import { FilmsComponent } from './pages/films/films.component'
 
 const routes: Routes = [
   {
@@ -35,14 +35,13 @@ const routes: Routes = [
     path: 'about',
     component: AboutComponent,
   },
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}
 
 /*
 TODO REMOVE SECOND RouterOutlet add one page per routes and put the supheader in the page and use regular child routes

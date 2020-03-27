@@ -4,8 +4,9 @@
   height: 80px;
 }
 
-a:hover, .active {
-  color: #A00020;
+a:hover,
+.active {
+  color: #a00020;
 }
 a {
   color: #003080;
