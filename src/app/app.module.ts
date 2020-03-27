@@ -8,6 +8,8 @@ import { EventComponent } from './components/event/event.component';
 import { TextsComponent } from './pages/texts/texts.component';
 import { UpcomingComponent } from './pages/upcoming/upcoming.component';
 import { AboutComponent } from './pages/about/about.component';
+import { WorksSubHeaderComponent } from './sub-headers/works-sub-header/works-sub-header.component';
+import { FilmsSubHeaderComponent } from './sub-headers/films-sub-header/films-sub-header.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { AboutComponent } from './pages/about/about.component';
     HeaderComponent,
     TextsComponent,
     UpcomingComponent,
-    AboutComponent
+    AboutComponent,
+    WorksSubHeaderComponent,
+    FilmsSubHeaderComponent
   ],
   imports: [
     BrowserModule,

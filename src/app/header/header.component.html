@@ -1,9 +1,9 @@
 <ul>
   <li>
-    <a routerLink="works" routerLinkActive="active">Works</a>
+    <a [routerLink]="[{ outlets: { 'sub-headers': ['works']} }]" routerLinkActive="active">Works</a>
   </li>
   <li>
-    <a routerLink="films" routerLinkActive="active">Films</a>
+    <a [routerLink]="[{ outlets: { 'sub-headers': ['films'] } }]" routerLinkActive="active">Films</a>
   </li>
   <li>
     <a routerLink="upcoming" routerLinkActive="active">Upcoming - Past</a>
