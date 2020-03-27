@@ -10,6 +10,7 @@ import { UpcomingComponent } from './pages/upcoming/upcoming.component';
 import { AboutComponent } from './pages/about/about.component';
 import { WorksComponent } from './pages/works/works.component';
 import { FilmsComponent } from './pages/films/films.component';
+import { ExternalTextComponent } from './pages/texts/external-text/external-text.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FilmsComponent } from './pages/films/films.component';
     AboutComponent,
     WorksComponent,
     FilmsComponent,
+    ExternalTextComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
