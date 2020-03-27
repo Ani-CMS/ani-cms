@@ -30,4 +30,11 @@ a {
   text-decoration: none;
 }
 
+main {
+  color: #003080;
+  padding: 0 3vw;
+  line-height: 2em;
+  margin-top: 6rem;
+}
+
 
