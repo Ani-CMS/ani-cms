@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { EventComponent } from './components/event/event.component';
+import { EventComponent } from './pages/upcoming/event/event.component';
 import { TextsComponent } from './pages/texts/texts.component';
 import { UpcomingComponent } from './pages/upcoming/upcoming.component';
 import { AboutComponent } from './pages/about/about.component';
