@@ -10,6 +10,8 @@ import { UpcomingComponent } from './pages/upcoming/upcoming.component';
 import { AboutComponent } from './pages/about/about.component';
 import { WorksSubHeaderComponent } from './sub-headers/works-sub-header/works-sub-header.component';
 import { FilmsSubHeaderComponent } from './sub-headers/films-sub-header/films-sub-header.component';
+import { WorksComponent } from './pages/works/works.component';
+import { FilmsComponent } from './pages/films/films.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { FilmsSubHeaderComponent } from './sub-headers/films-sub-header/films-su
     UpcomingComponent,
     AboutComponent,
     WorksSubHeaderComponent,
-    FilmsSubHeaderComponent
+    FilmsSubHeaderComponent,
+    WorksComponent,
+    FilmsComponent
   ],
   imports: [
     BrowserModule,
