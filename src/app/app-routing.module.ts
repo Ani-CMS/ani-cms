@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UpcomingPage } from './pages/upcoming/upcoming-page.component';
-import { TextsPage } from './pages/texts/texts-page.component';
+import { TextsComponent } from './pages/texts/texts.component';
 
 
 const routes: Routes = [
   {
     path: 'works',
-    component: UpcomingPage
+    component: null
   },
   {
     path: 'films',
-    component: TextsPage
+    component: null
   },
   {
     path: 'upcoming',
@@ -19,11 +19,11 @@ const routes: Routes = [
   },
   {
     path: 'texts',
-    component: TextsPage
+    component: TextsComponent
   },
   {
     path: 'about',
-    component: TextsPage
+    component: null
   },
 ];
 

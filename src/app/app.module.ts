@@ -6,15 +6,15 @@ import { AppComponent } from './app.component';
 import { UpcomingPage } from './pages/upcoming/upcoming-page.component';
 import { HeaderComponent } from './components/header/header.component';
 import { EventComponent } from './components/event/event.component';
-import { TextsPage } from './pages/texts/texts-page.component';
+import { TextsComponent } from './pages/texts/texts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventComponent,
     UpcomingPage,
-    TextsPage,
-    HeaderComponent
+    HeaderComponent,
+    TextsComponent
   ],
   imports: [
     BrowserModule,
