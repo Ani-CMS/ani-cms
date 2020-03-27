@@ -1,9 +1,18 @@
+:root {
+  --primary-color: #003080;
+  --secondary-color: #098b8b;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: calc(0.9rem + 0.3 * ((100vw - 320px) / 100));
   margin: 0;
   padding: 0 3vw;
-  color: #003080;
+  color: var(--primary-color);
 }
 
 @media screen and (max-width: 812px) {
@@ -19,7 +28,7 @@ h1 {
 }
 
 a {
-  color: #098b8b;
+  color: var(--secondary-color);
   text-decoration: none;
 }
 
