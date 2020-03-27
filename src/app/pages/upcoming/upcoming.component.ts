@@ -4,7 +4,7 @@ import { ContentfulService } from '../../contentful.service';
 @Component({
   selector: 'app-upcoming',
   templateUrl: './upcoming.component.html',
-  styleUrls: ['./upcoming.component.css']
+  styleUrls: ['./upcoming.component.css'],
 })
 export class UpcomingComponent implements OnInit {
   events$ = this.contentfulService.events$;
@@ -14,5 +14,4 @@ export class UpcomingComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

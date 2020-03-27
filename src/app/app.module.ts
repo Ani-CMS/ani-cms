@@ -20,14 +20,11 @@ import { FilmsComponent } from './pages/films/films.component';
     UpcomingComponent,
     AboutComponent,
     WorksComponent,
-    FilmsComponent
+    FilmsComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }
