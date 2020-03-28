@@ -6,8 +6,18 @@ import { ExternalText } from './pages/texts/external-text/external-text.componen
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { About } from './pages/about/about.component'
 
-// TODO Ani jeder subheader gleichers pattern, stylen mit nth-child -> dann nur title laden. mehrere links auf eine reohe wegen mehr platz
-
+/*
+ TODO
+  Subheader:
+    - Jeder subheader gleiches Pattern, stylen mit nth-child -> Titles austauschen.
+    - Multiple links on one row
+    - One single Subheader component?
+  Other
+   - Add title to every content model
+  Slideshows
+    - Use inline entries
+    - Regex last resort, try to change the document with the util functions instead
+ */
 @Injectable({
   providedIn: 'root'
 })
