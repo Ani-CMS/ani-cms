@@ -37,6 +37,7 @@ export class ContentfulService {
         return {
           ...item.fields,
           link: item.fields.link,
+          image: item.fields.image?.fields.file.url,
           richText: documentToHtmlString(item.fields.freeText)
         }
       })

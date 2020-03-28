@@ -2,10 +2,6 @@ app-event span {
   display: block;
 }
 
-app-event img {
-  margin-top: 16px;
-}
-
 /* Style encapsulation has to be broken in order to affect innerHTML elements */
 app-event article {
   margin: calc(var(--vertical-margin) / 2) 0;
@@ -13,4 +9,8 @@ app-event article {
 
 app-event p {
   margin: 0;
+}
+
+app-event figure {
+  margin: 0
 }
