@@ -7,4 +7,8 @@
   </app-external-text>
   <div></div>
   <button (click)="onUp()">up</button>
+  <ng-container *ngFor="let text of texts$ | async">
+    <app-text [text]="text"></app-text>
+    <button (click)="onUp()">up</button>
+  </ng-container>
 </main>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core'
 import { ContentfulService } from '../../contentful.service'
-import { tap } from 'rxjs/operators'
 import { Title } from '@angular/platform-browser'
 
 @Component({
@@ -9,7 +8,8 @@ import { Title } from '@angular/platform-browser'
   styleUrls: ['./texts.component.css']
 })
 export class TextsComponent implements OnInit {
-  externalText$ = this.contentfulService.externalTexts$.pipe(tap(console.log))
+  externalText$ = this.contentfulService.externalTexts$
+  texts$ = this.contentfulService.text$
 
   constructor(
     private contentfulService: ContentfulService,
