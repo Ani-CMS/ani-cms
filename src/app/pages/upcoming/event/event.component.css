@@ -1,7 +1,3 @@
-app-event span {
-  display: block;
-}
-
 /* Style encapsulation has to be broken in order to affect innerHTML elements */
 app-event article {
   margin: calc(var(--vertical-margin) / 2) 0;
