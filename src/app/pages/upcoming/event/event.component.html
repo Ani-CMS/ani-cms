@@ -2,6 +2,7 @@
 <span *ngIf="event.description">{{ event.description }}</span>
 <span *ngIf="event.from">{{ event.from | date: 'dd/MM/y HH:mm' }}</span>
 <span *ngIf="event.until">- {{ event.until | date: 'dd/MM/y HH:mm' }}</span>
+<span *ngIf="event.location">{{event.location}}</span>
 <article [innerHTML]="event.richText"></article>
 <figure *ngIf="event.image">
   <img [alt]="event.imageDescription" [src]="event.image"/>

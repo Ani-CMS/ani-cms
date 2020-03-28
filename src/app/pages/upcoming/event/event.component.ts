@@ -6,6 +6,7 @@ export interface Event {
   description: string
   from: string
   until: string
+  location: string
   richText: string
   image: string
   imageDescription: string
