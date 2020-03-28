@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators'
 import { ExternalText } from './pages/texts/external-text/external-text.component'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { About } from './pages/about/about.component'
+import { Text } from './pages/texts/text/text.component'
 
 /*
  TODO
@@ -64,6 +65,7 @@ export class ContentfulService {
       return response.items.map((item: any) => {
         return {
           ...item.fields,
+          richTextTitle: documentToHtmlString(item.fields.text),
           richText: documentToHtmlString(item.fields.freeText)
         }
       })

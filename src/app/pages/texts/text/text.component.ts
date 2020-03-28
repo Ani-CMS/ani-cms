@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core'
 
 export interface Text {
-  title: string
+  richTextTitle: string
   richText: string
 }
 
