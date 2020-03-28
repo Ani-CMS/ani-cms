@@ -1,0 +1,17 @@
+<div [ngStyle]="{ width: slideshow.width }" class="slideshow">
+  <div [ngStyle]="{ 'padding-bottom': slideshow.aspectRatio }">
+    <img
+      (load)="onImageLoad()"
+      *ngFor="let src of slideshow.imageUrls; let i = index"
+      [ngClass]="i === imageIndex ? 'active' : null"
+      [src]="src"
+    />
+  </div>
+  <div class="button-container">
+    <button
+      (click)="onButtonClick(i)"
+      *ngFor="let src of slideshow.imageUrls; let i = index"
+      [ngClass]="i === imageIndex ? 'active' : null"
+    ></button>
+  </div>
+</div>
