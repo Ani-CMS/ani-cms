@@ -18,6 +18,7 @@ import { About } from './pages/about/about.component'
     - Use inline entries
     - Regex last resort, try to change the document with the util functions instead
  */
+
 @Injectable({
   providedIn: 'root'
 })
@@ -36,7 +37,7 @@ export class ContentfulService {
         return {
           ...item.fields,
           link: this.getLink(item.fields.link),
-          image: item?.fields?.image?.fields?.file?.url
+          richText: documentToHtmlString(item.fields.freeText)
         }
       })
     })
@@ -62,7 +63,7 @@ export class ContentfulService {
       return response.items.map((item: any) => {
         return {
           ...item.fields,
-          richText: documentToHtmlString(item.fields.text)
+          richText: documentToHtmlString(item.fields.freeText)
         }
       })
     })
@@ -73,7 +74,7 @@ export class ContentfulService {
   ).pipe(
     map((response: any) => {
       return {
-        richText: documentToHtmlString(response.items[0].fields.aboutText)
+        richText: documentToHtmlString(response.items[0].fields.freeText)
       }
     })
   )
