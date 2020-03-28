@@ -36,7 +36,7 @@ export class ContentfulService {
       return response.items.map((item: any) => {
         return {
           ...item.fields,
-          link: this.getLink(item.fields.link),
+          link: item.fields.link,
           richText: documentToHtmlString(item.fields.freeText)
         }
       })
@@ -50,7 +50,7 @@ export class ContentfulService {
       return response.items.map((item: any) => {
         return {
           ...item.fields,
-          link: this.getLink(item.fields.link)
+          link: item.fields.link
         }
       })
     })
@@ -78,8 +78,4 @@ export class ContentfulService {
       }
     })
   )
-
-  private getLink(link): string {
-    return link.content[0].content[1].data.uri
-  }
 }
