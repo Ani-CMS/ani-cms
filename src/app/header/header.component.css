@@ -6,10 +6,10 @@
 
 a:hover,
 .active {
-  color: #a00020;
+  color: var(--tertiary-color);
 }
 a {
-  color: #003080;
+  color: var(--primary-color);
 }
 
 ul {
