@@ -9,7 +9,7 @@ html {
 
 body {
   font-family: Helvetica, Arial, sans-serif;
-  font-size: calc(0.9rem + 0.3 * ((100vw - 320px) / 100));
+  font-size: calc(0.9rem + 0.3 * ((100vw - 320px) / 100)); /* TODO Remove this. Introduced, because of problems on mobile */
   margin: 0;
   padding: 0 3vw;
   color: var(--primary-color);
@@ -17,6 +17,7 @@ body {
 }
 
 @media screen and (max-width: 812px) {
+  /* TODO Remove this. Introduced, because of problems on mobile */
   h1 {
     font-size: 1.5em;
   }
