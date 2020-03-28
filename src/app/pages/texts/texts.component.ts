@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { ContentfulService } from '../../contentful.service'
 import { tap } from 'rxjs/operators'
+import { Title } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-texts',
@@ -10,12 +11,14 @@ import { tap } from 'rxjs/operators'
 export class TextsComponent implements OnInit {
   externalText$ = this.contentfulService.externalTexts$.pipe(tap(console.log))
 
-  constructor(private contentfulService: ContentfulService) {
+  constructor(
+    private contentfulService: ContentfulService,
+    private title: Title
+  ) {
   }
 
-
   ngOnInit(): void {
-    console.log(1)
+    this.title.setTitle('ABOUT')
   }
 
   onUp() {

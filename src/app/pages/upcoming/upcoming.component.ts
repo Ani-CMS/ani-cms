@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core'
 import { ContentfulService } from '../../contentful.service'
+import { Title } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-upcoming',
   templateUrl: './upcoming.component.html',
-  styleUrls: ['./upcoming.component.css'],
+  styleUrls: ['./upcoming.component.css']
 })
 export class UpcomingComponent implements OnInit {
   events$ = this.contentfulService.events$
 
-  constructor(private contentfulService: ContentfulService) {}
+  constructor(
+    private contentfulService: ContentfulService,
+    private title: Title
+  ) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.title.setTitle('UPCOMING - PAST')
+  }
 }
