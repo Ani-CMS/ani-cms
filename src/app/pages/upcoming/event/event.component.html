@@ -1,6 +1,6 @@
 <a [href]="event.link" class="title">{{ event.title }}</a>
 <span *ngIf="event.description">{{ event.description }}</span>
-<div>
+<div class="date">
   <span *ngIf="event.from">{{ event.from | date: 'dd/MM/y HH:mm' }}</span>
   <span *ngIf="event.until"> - {{ event.until | date: 'dd/MM/y HH:mm' }}</span>
 </div>
