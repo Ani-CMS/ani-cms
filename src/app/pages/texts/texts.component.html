@@ -1,14 +1,13 @@
 <h1>Texts</h1>
-<main>
-  <app-external-text
-    *ngFor="let externalText of externalText$ | async"
-    [externalText]="externalText"
-  >
-  </app-external-text>
-  <div></div>
+
+<app-external-text
+  *ngFor="let externalText of externalText$ | async"
+  [externalText]="externalText"
+>
+</app-external-text>
+<button (click)="onUp()">up</button>
+
+<ng-container *ngFor="let text of texts$ | async">
+  <app-text [text]="text"></app-text>
   <button (click)="onUp()">up</button>
-  <ng-container *ngFor="let text of texts$ | async">
-    <app-text [text]="text"></app-text>
-    <button (click)="onUp()">up</button>
-  </ng-container>
-</main>
+</ng-container>
