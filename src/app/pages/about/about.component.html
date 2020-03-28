@@ -1,2 +1,2 @@
 <h1>About</h1>
-<article [innerHTML]="(about$ | async).richText"></article>
+<article [innerHTML]="(about$ | async)?.richText"></article>
