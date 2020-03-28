@@ -1,5 +1,5 @@
 app-external-text, app-text, button {
-  margin: var(--vertical-margin);
+  margin: var(--vertical-margin) 0;
   display: block;
 }
 

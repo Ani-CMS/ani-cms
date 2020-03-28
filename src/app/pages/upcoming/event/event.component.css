@@ -8,7 +8,7 @@ app-event img {
 
 /* Style encapsulation has to be broken in order to affect innerHTML elements */
 app-event article {
-  margin: var(--vertical-margin);
+  margin: calc(var(--vertical-margin) / 2) 0;
 }
 
 app-event p {
