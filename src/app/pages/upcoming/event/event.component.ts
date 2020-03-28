@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, Input, ViewEncapsulation } from '@angular/core'
 
 export interface Event {
   title: string
@@ -13,6 +13,7 @@ export interface Event {
   selector: 'app-event',
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class EventComponent {
   @Input() event: Event

@@ -1,7 +1,16 @@
-span {
+app-event span {
   display: block;
 }
 
-img {
+app-event img {
   margin-top: 16px;
+}
+
+/* Style encapsulation has to be broken in order to affect innerHTML elements */
+app-event article {
+  margin: var(--vertical-margin);
+}
+
+app-event p {
+  margin: 0;
 }
