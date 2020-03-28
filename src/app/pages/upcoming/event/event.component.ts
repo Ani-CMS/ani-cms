@@ -6,8 +6,7 @@ export interface Event {
   description: string
   from: string
   until: string
-  location: string
-  image: string
+  richText: string
 }
 
 @Component({
