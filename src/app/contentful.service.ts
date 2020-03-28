@@ -4,6 +4,7 @@ import { from, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { ExternalText } from './pages/texts/external-text/external-text.component'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+import { About } from './pages/about/about.component'
 
 // TODO Ani jeder subheader gleichers pattern, stylen mit nth-child -> dann nur title laden. mehrere links auf eine reohe wegen mehr platz
 
@@ -54,6 +55,16 @@ export class ContentfulService {
           richText: documentToHtmlString(item.fields.text)
         }
       })
+    })
+  )
+
+  about$: Observable<About> = from(
+    this.client.getEntries({ content_type: 'about' })
+  ).pipe(
+    map((response: any) => {
+      return {
+        richText: documentToHtmlString(response.items[0].fields.aboutText)
+      }
     })
   )
 

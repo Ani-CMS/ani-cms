@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core'
 import { Title } from '@angular/platform-browser'
+import { ContentfulService } from '../../contentful.service'
+
+export interface About {
+  richText: string
+}
 
 @Component({
   selector: 'app-about',
@@ -7,7 +12,9 @@ import { Title } from '@angular/platform-browser'
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-  constructor(private title: Title) {
+  about$ = this.contentful.about$
+
+  constructor(private contentful: ContentfulService, private title: Title) {
   }
 
   ngOnInit(): void {
