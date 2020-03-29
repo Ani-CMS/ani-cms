@@ -1,11 +1,9 @@
-import { Component, Input, OnDestroy } from '@angular/core'
+import { Component, Input, OnDestroy, OnInit } from '@angular/core'
 
-export interface Slideshow {
+export interface SlideshowInput {
   imageUrls: string[]
-  width: string
-  height: string
-  // '(height / width)px'
-  aspectRatio: string
+  width: number
+  height: number
 }
 
 @Component({
@@ -13,11 +11,15 @@ export interface Slideshow {
   templateUrl: './slideshow.component.html',
   styleUrls: ['./slideshow.component.css']
 })
-export class SlideshowComponent implements OnDestroy {
-  @Input() slideshow: Slideshow
+export class SlideshowComponent implements OnInit, OnDestroy {
+  @Input() slideshow: SlideshowInput
 
   public imageIndex = 0
   private intervalId: number
+
+  ngOnInit(): void {
+    console.log('SlideshowComponent', this.slideshow)
+  }
 
   ngOnDestroy(): void {
     clearInterval(this.intervalId)

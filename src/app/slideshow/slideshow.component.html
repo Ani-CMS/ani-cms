@@ -1,5 +1,5 @@
-<div [ngStyle]="{ width: slideshow.width }" class="slideshow">
-  <div [ngStyle]="{ 'padding-bottom': slideshow.aspectRatio }">
+<div [ngStyle]="{ width: slideshow.width + 'px' }" class="slideshow">
+  <div [ngStyle]="{ 'padding-bottom': slideshow.height / slideshow.width * 100 + '%' }">
     <img
       (load)="onImageLoad()"
       *ngFor="let src of slideshow.imageUrls; let i = index"

@@ -13,6 +13,8 @@ import { FilmsComponent } from './pages/films/films.component'
 import { ExternalTextComponent } from './pages/texts/external-text/external-text.component'
 import { TextComponent } from './pages/texts/text/text.component'
 import { SlideshowComponent } from './slideshow/slideshow.component'
+import { HomeComponent } from './pages/home/home.component'
+import { RichTextElementComponent } from './rich-text-element/rich-text-element.component'
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { SlideshowComponent } from './slideshow/slideshow.component'
     FilmsComponent,
     ExternalTextComponent,
     TextComponent,
-    SlideshowComponent
+    SlideshowComponent,
+    HomeComponent,
+    RichTextElementComponent
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

@@ -5,19 +5,24 @@ import { UpcomingComponent } from './pages/upcoming/upcoming.component'
 import { AboutComponent } from './pages/about/about.component'
 import { WorksComponent } from './pages/works/works.component'
 import { FilmsComponent } from './pages/films/films.component'
+import { HomeComponent } from './pages/home/home.component'
 
 const routes: Routes = [
   {
+    path: '',
+    component: HomeComponent
+  },
+  {
     path: 'works',
-    component: WorksComponent,
+    component: WorksComponent
   },
   {
     path: 'works/:id',
-    component: WorksComponent,
+    component: WorksComponent
   },
   {
     path: 'films',
-    component: FilmsComponent,
+    component: FilmsComponent
   },
   {
     path: 'films/:id',
