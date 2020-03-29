@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core'
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
 export enum ELEMENT_TYPE {
   H1,
-  P, // TODO Bold, etc.
+  P,
   SLIDESHOW,
-  IMG
+  IMG,
 }
 
 export interface RichTextElement<Data> {
@@ -21,6 +22,7 @@ export class RichTextElementComponent implements OnInit {
   @Input() element: RichTextElement<any>
 
   ELEMENT_TYPE = ELEMENT_TYPE
+  documentToHtmlString = documentToHtmlString
 
   ngOnInit(): void {
   }

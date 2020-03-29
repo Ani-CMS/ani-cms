@@ -12,14 +12,14 @@ import { ELEMENT_TYPE, RichTextElement } from './rich-text-element/rich-text-ele
 
 /*
  TODO
+  RichTextElement
+    - In other branch delete RichTextElement and try https://github.com/angular/angular/issues/21163
   Mobile
     - Check on real phone
   Subheader:
     - Jeder subheader gleiches Pattern, stylen mit nth-child -> Titles austauschen.
     - Multiple links on one row
     - One single Subheader component?
-  Other
-   - Add title to every content model
   Slideshows
    - Move other richText to same approach and use one function to transform a richText field to arraz of elements everywhere
  */
@@ -75,7 +75,6 @@ export class ContentfulService {
       })
     })
   )
-  // TODO assset passt nicht in flow? asset bild wird doch bei about etc gerendered oder? siwtch to inline asset
 
   homeProjects$: Observable<HomeProject> = from(
     this.client.getEntries({ content_type: 'homeProject' })
@@ -105,6 +104,8 @@ export class ContentfulService {
       const project: HomeProject = {
         richTextElements: elements
       }
+      console.log(response)
+      console.log(project)
       return project
     })
   )
@@ -150,12 +151,12 @@ const toSlideshow = (node): RichTextElement<SlideshowInput> => {
 
 const toH1 = (node): RichTextElement<string> => ({
   elementType: ELEMENT_TYPE.H1,
-  data: node.content[0].value
+  data: node
 })
 
 const toP = (node): RichTextElement<string> => ({
   elementType: ELEMENT_TYPE.P,
-  data: node.content[0].value
+  data: node
 })
 
 const toImg = (node): RichTextElement<string> => ({
