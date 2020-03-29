@@ -19,5 +19,5 @@ export interface Event {
   encapsulation: ViewEncapsulation.None
 })
 export class EventComponent {
-  @Input() event: Event
+  @Input() config: Event
 }

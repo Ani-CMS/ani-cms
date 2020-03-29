@@ -2,12 +2,12 @@
 
 <app-external-text
   *ngFor="let externalText of externalText$ | async"
-  [externalText]="externalText"
+  [config]="externalText"
 >
 </app-external-text>
 <button (click)="onUp()">up</button>
 
 <ng-container *ngFor="let text of texts$ | async">
-  <app-text [text]="text"></app-text>
+  <app-text [config]="text"></app-text>
   <button (click)="onUp()">up</button>
 </ng-container>

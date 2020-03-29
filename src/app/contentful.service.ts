@@ -3,11 +3,12 @@ import { createClient } from 'contentful'
 import { from, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { ExternalText } from './pages/texts/external-text/external-text.component'
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+import { documentToHtmlString, Options } from '@contentful/rich-text-html-renderer'
 import { About } from './pages/about/about.component'
 import { Text } from './pages/texts/text/text.component'
-import { SlideshowInput } from './slideshow/slideshow.component'
-import { HomeProjects } from './pages/home/home.component'
+import { Slideshow, SlideshowComponent } from './slideshow/slideshow.component'
+import { ElementToReplace, HomeProjects } from './pages/home/home.component'
+import { BLOCKS } from '@contentful/rich-text-types'
 
 /*
  TODO
@@ -24,13 +25,13 @@ import { HomeProjects } from './pages/home/home.component'
  */
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ContentfulService {
   private client = createClient({
     space: 'hy4v2om2p6ry',
     environment: 'master',
-    accessToken: 'yG8c6btCdKehQU8Of7viYjYcwg9ASsZJsRZ6gEKMJw8',
+    accessToken: 'yG8c6btCdKehQU8Of7viYjYcwg9ASsZJsRZ6gEKMJw8'
   })
 
   events$: Observable<Event[]> = from(
@@ -42,7 +43,7 @@ export class ContentfulService {
           ...item.fields,
           link: item.fields.link,
           image: item.fields.image?.fields.file.url,
-          richText: documentToHtmlString(item.fields.freeText),
+          richText: documentToHtmlString(item.fields.freeText)
         }
       })
     })
@@ -55,7 +56,7 @@ export class ContentfulService {
       return response.items.map((item: any) => {
         return {
           ...item.fields,
-          link: item.fields.link,
+          link: item.fields.link
         }
       })
     })
@@ -69,7 +70,7 @@ export class ContentfulService {
         return {
           ...item.fields,
           richTextTitle: documentToHtmlString(item.fields.text),
-          richText: documentToHtmlString(item.fields.freeText),
+          richText: documentToHtmlString(item.fields.freeText)
         }
       })
     })
@@ -79,20 +80,26 @@ export class ContentfulService {
     this.client.getEntries({ content_type: 'homeProject' })
   ).pipe(
     map((response: any) => {
-      const slideshows: SlideshowInput[] = []
-      const images = []
-      for (const node of response.items[0].fields.freeText.content) {
+      const elementsToReplace: ElementToReplace[] = []
+      const nodes = response.items[0].fields.freeText.content
+      nodes.forEach((node, index) => {
         if (isSlideshow(node)) {
-          slideshows.push(toSlideshow(node))
+          elementsToReplace.push({
+            config: toSlideshow(node),
+            component: SlideshowComponent,
+            index
+          })
         }
         if (isImage(node)) {
-          images.push() // TODO
+          elementsToReplace.push() // TODO
         }
-      }
+      })
       return {
-        images,
-        slideshows,
-        richText: documentToHtmlString(response.items[0].fields.freeText),
+        elementsToReplace,
+        richText: documentToHtmlString(
+          response.items[0].fields.freeText,
+          options
+        )
       }
     })
   )
@@ -102,7 +109,7 @@ export class ContentfulService {
   ).pipe(
     map((response: any) => {
       return {
-        richText: documentToHtmlString(response.items[0].fields.freeText),
+        richText: documentToHtmlString(response.items[0].fields.freeText)
       }
     })
   )
@@ -112,12 +119,23 @@ const isImage = (node) =>
   node.data.target?.fields.file?.contentType === 'image/jpeg'
 const isSlideshow = (node) =>
   node.data.target?.sys.contentType?.sys.id === 'slideshow'
-const toSlideshow = (node): SlideshowInput => {
+const toSlideshow = (node): Slideshow => {
   return {
     width: node.data.target.fields.width,
     height: node.data.target.fields.height,
     imageUrls: node.data.target.fields.slideshowImage.map(
       (image) => 'https:' + image.fields.file.url
-    ),
+    )
+  }
+}
+
+const options: Options = {
+  renderNode: {
+    [BLOCKS.EMBEDDED_ENTRY]: (node, next) => {
+      if (isSlideshow(node)) {
+        return `<div class="container-for-slideshow">CONTAINER FOR SLIDESHOW</div>`
+      }
+      return '<h2>????????????</h2>'
+    }
   }
 }

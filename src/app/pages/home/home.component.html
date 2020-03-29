@@ -2,5 +2,5 @@
   #container
   appMutationObserver
   [innerHTML]="(homeProjects$ | async)?.richText"
-  (innerHtmlRendered)="onInnerHtmlRendered()"
+  (innerHtmlAdded)="onInnerHtmlRendered()"
 ></div>

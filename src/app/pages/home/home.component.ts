@@ -1,22 +1,26 @@
 import {
-  AfterViewInit,
   Component,
   ComponentFactory,
   ComponentFactoryResolver,
   ComponentRef,
   ElementRef,
   OnDestroy,
-  OnInit,
+  Renderer2,
   ViewChild,
   ViewContainerRef,
   ViewEncapsulation
 } from '@angular/core'
 import { ContentfulService } from '../../contentful.service'
-import { SlideshowInput } from '../../slideshow/slideshow.component'
+import { tap } from 'rxjs/operators'
+
+export interface ElementToReplace {
+  config: any
+  index: number
+  component: any
+}
 
 export interface HomeProjects {
-  slideshows: SlideshowInput[]
-  images: any[]
+  elementsToReplace: ElementToReplace[]
   richText: string
 }
 
@@ -26,48 +30,70 @@ export interface HomeProjects {
   styleUrls: ['./home.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
-  homeProjects$ = this.contentfulService.homeProjects$
-  componentRefs: Array<ComponentRef<any>>
+export class HomeComponent implements OnDestroy {
+  elementsToReplace: ElementToReplace[]
+  homeProjects$ = this.contentfulService.homeProjects$.pipe(
+    tap(
+      (homeProjects) =>
+        (this.elementsToReplace = homeProjects.elementsToReplace)
+    )
+  )
+  componentRefs: Array<ComponentRef<any>> = []
 
-  @ViewChild('container', { read: ViewContainerRef }) container: ViewContainerRef
-  @ViewChild('container') containerRef: ElementRef
+  @ViewChild('container', { read: ViewContainerRef })
+  container: ViewContainerRef
+  @ViewChild('container') elementRef: ElementRef<HTMLDivElement>
 
   constructor(
     private contentfulService: ContentfulService,
-    private resolver: ComponentFactoryResolver
+    private resolver: ComponentFactoryResolver,
+    private renderer: Renderer2
   ) {
   }
 
   onInnerHtmlRendered() {
-    console.log(1)
-    debugger
-    // search template for all children
-    // loop over them including the index
-    // check their class and decide on component
-    // delete the component with container.remove(index) -> create component replace div.slideshow
+    console.count('innerHTMLRendered')
+    // const slideshowContainers = this.elementRef.nativeElement.querySelectorAll('.container-for-slideshow')
+    // const children = Array.from(this.elementRef.nativeElement.children)
+    // const components = []
+    // children.forEach((element, index) => {
+    //   if (element.classList.contains('container-for-slideshow')) {
+    //     components.push({ component: SlideshowComponent, index, config: null }) // get the input
+    //   }
+    // })
+    // TODO Watch network requests, take(1)
+    this.elementsToReplace.forEach((element) => this.replaceComponent(element))
   }
 
-  createComponent(component) {
-    this.container.clear()
+  replaceComponent(elementToReplace: ElementToReplace) {
+    // this.container.clear()
     const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(
-      component
+      elementToReplace.component
     )
-    const componentRef = this.container.createComponent(factory, 0)
-    componentRef.instance.slideshowInput = null
+    // TODO Delete dev.container-for
+    const componentRef = this.container.createComponent(
+      factory
+      // elementToReplace.index
+    )
+    if (elementToReplace.config) {
+      componentRef.instance.config = elementToReplace.config
+      componentRef.changeDetectorRef.detectChanges()
+    }
+    const nativeElement = this.elementRef.nativeElement
+    const removedChild = nativeElement.children[elementToReplace.index]
+    const slideshowNativeElement = this.elementRef.nativeElement.nextSibling
+    this.renderer.insertBefore(
+      nativeElement,
+      slideshowNativeElement,
+      removedChild
+    )
+    this.renderer.removeChild(nativeElement, removedChild)
+    // TODO If componentRef does not work inject elementRef in constructor of slideshow with comment and acces it here via .instance
     this.componentRefs.push(componentRef)
   }
 
   // TODO Mazbe SlideshowComponent needs to be added to ngmodule
   ngOnDestroy(): void {
     this.componentRefs.forEach((ref) => ref.destroy())
-  }
-
-  ngAfterViewInit(): void {
-    debugger
-  }
-
-  ngOnInit(): void {
-    debugger
   }
 }

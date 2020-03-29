@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core'
 
-export interface SlideshowInput {
+export interface Slideshow {
   imageUrls: string[]
   width: number
   height: number
@@ -12,7 +12,7 @@ export interface SlideshowInput {
   styleUrls: ['./slideshow.component.css']
 })
 export class SlideshowComponent implements OnInit, OnDestroy {
-  @Input() slideshow: SlideshowInput
+  @Input() config: Slideshow
 
   public imageIndex = 0
   private intervalId: number
@@ -43,7 +43,7 @@ export class SlideshowComponent implements OnInit, OnDestroy {
 
   private nextImage() {
     this.imageIndex =
-      this.imageIndex === this.slideshow.imageUrls.length - 1
+      this.imageIndex === this.config.imageUrls.length - 1
         ? 0
         : this.imageIndex + 1
   }

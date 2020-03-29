@@ -1,12 +1,12 @@
-<a [href]="event.link" class="title">{{ event.title }}</a>
-<span *ngIf="event.description">{{ event.description }}</span>
+<a [href]="config.link" class="title">{{ config.title }}</a>
+<span *ngIf="config.description">{{ config.description }}</span>
 <div class="date">
-  <span *ngIf="event.from">{{ event.from | date: 'dd/MM/y HH:mm' }}</span>
-  <span *ngIf="event.until"> - {{ event.until | date: 'dd/MM/y HH:mm' }}</span>
+  <span *ngIf="config.from">{{ config.from | date: 'dd/MM/y HH:mm' }}</span>
+  <span *ngIf="config.until"> - {{ config.until | date: 'dd/MM/y HH:mm' }}</span>
 </div>
-<span *ngIf="event.location">{{ event.location }}</span>
-<article [innerHTML]="event.richText"></article>
-<figure *ngIf="event.image">
-  <img [alt]="event.imageDescription" [src]="event.image"/>
-  <figcaption>{{ event.imageDescription }}</figcaption>
+<span *ngIf="config.location">{{ config.location }}</span>
+<article [innerHTML]="config.richText"></article>
+<figure *ngIf="config.image">
+  <img [alt]="config.imageDescription" [src]="config.image"/>
+  <figcaption>{{ config.imageDescription }}</figcaption>
 </figure>

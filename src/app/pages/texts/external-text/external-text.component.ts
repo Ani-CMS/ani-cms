@@ -12,7 +12,7 @@ export interface ExternalText {
   styleUrls: ['./external-text.component.css']
 })
 export class ExternalTextComponent implements OnInit {
-  @Input() externalText: ExternalText
+  @Input() config: ExternalText
 
   constructor() {
   }

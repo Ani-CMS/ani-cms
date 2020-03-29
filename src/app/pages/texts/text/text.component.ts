@@ -11,7 +11,7 @@ export interface Text {
   styleUrls: ['./text.component.css']
 })
 export class TextComponent implements OnInit {
-  @Input() text: Text
+  @Input() config: Text
 
   constructor() {
   }
