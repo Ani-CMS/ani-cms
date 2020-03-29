@@ -1,4 +1,5 @@
 <div
+  #container
   appMutationObserver
   [innerHTML]="(homeProjects$ | async)?.richText"
   (innerHtmlRendered)="onInnerHtmlRendered()"
