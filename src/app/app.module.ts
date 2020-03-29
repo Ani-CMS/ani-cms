@@ -13,8 +13,8 @@ import { FilmsComponent } from './pages/films/films.component'
 import { ExternalTextComponent } from './pages/texts/external-text/external-text.component'
 import { TextComponent } from './pages/texts/text/text.component'
 import { SlideshowComponent } from './slideshow/slideshow.component'
-import { HomeComponent } from './pages/home/home.component'
-import { RichTextElementComponent } from './rich-text-element/rich-text-element.component'
+import { HomeComponent } from './pages/home/home.component';
+import { MutationObserverDirective } from './mutation-observer.directive'
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { RichTextElementComponent } from './rich-text-element/rich-text-element.
     TextComponent,
     SlideshowComponent,
     HomeComponent,
-    RichTextElementComponent
+    MutationObserverDirective,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

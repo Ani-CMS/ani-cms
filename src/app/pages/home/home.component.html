@@ -1,3 +1,5 @@
-<app-rich-text-element *ngFor="let element of (homeProjects$ | async)?.richTextElements"
-                       [element]="element"></app-rich-text-element>
-
+<div
+  appMutationObserver
+  [innerHTML]="(homeProjects$ | async)?.richText"
+  (innerHtmlRendered)="onInnerHtmlRendered()"
+></div>
