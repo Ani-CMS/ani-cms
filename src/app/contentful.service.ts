@@ -12,6 +12,8 @@ import { ELEMENT_TYPE, RichTextElement } from './rich-text-element/rich-text-ele
 
 /*
  TODO
+  Mobile
+    - Check on real phone
   Subheader:
     - Jeder subheader gleiches Pattern, stylen mit nth-child -> Titles austauschen.
     - Multiple links on one row
@@ -85,23 +87,24 @@ export class ContentfulService {
         (node): RichTextElement<any> => {
           const type: ELEMENT_TYPE = getType(node)
           switch (type) {
-            case ELEMENT_TYPE.SLIDESHOW:
-              return toSlideshow(node)
-              break
-            case ELEMENT_TYPE.P:
-              return toP(node)
-              break
             case ELEMENT_TYPE.H1:
               return toH1(node)
-              break
+            case ELEMENT_TYPE.P:
+              return toP(node)
+            case ELEMENT_TYPE.IMG:
+              return toImg(node)
+            case ELEMENT_TYPE.SLIDESHOW:
+              return toSlideshow(node)
           }
         }
       )
 
+      // TODO Don't filter out elements like empty <p> for now. Otherwise Ani cannot introduce distance herself?
+      // Or do it and give margin, but then nothing changes if Ani adds two empty <p>
+
       const project: HomeProject = {
         richTextElements: elements
       }
-
       return project
     })
   )
@@ -118,16 +121,18 @@ export class ContentfulService {
 }
 
 const getType = (node): ELEMENT_TYPE => {
-  if (node.data.target?.sys.contentType?.sys.id === 'slideshow') {
-    return ELEMENT_TYPE.SLIDESHOW
-  }
   if (node.nodeType === 'heading-1') {
     return ELEMENT_TYPE.H1
   }
   if (node.nodeType === 'paragraph') {
-    return ELEMENT_TYPE.H1
+    return ELEMENT_TYPE.P
   }
-  // TODO Do the picture
+  if (node.data.target?.fields.file?.contentType === 'image/jpeg') { // TODO Optional chaining missing?
+    return ELEMENT_TYPE.IMG
+  }
+  if (node.data.target?.sys.contentType?.sys.id === 'slideshow') {
+    return ELEMENT_TYPE.SLIDESHOW
+  }
 }
 
 const toSlideshow = (node): RichTextElement<SlideshowInput> => {
@@ -151,4 +156,9 @@ const toH1 = (node): RichTextElement<string> => ({
 const toP = (node): RichTextElement<string> => ({
   elementType: ELEMENT_TYPE.P,
   data: node.content[0].value
+})
+
+const toImg = (node): RichTextElement<string> => ({
+  elementType: ELEMENT_TYPE.IMG,
+  data: 'https:' + node.data.target.fields.file.url
 })

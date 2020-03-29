@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core'
 
 export enum ELEMENT_TYPE {
-  SLIDESHOW,
-  P, // TODO Bold, etc.
   H1,
+  P, // TODO Bold, etc.
+  SLIDESHOW,
+  IMG
 }
 
 export interface RichTextElement<Data> {

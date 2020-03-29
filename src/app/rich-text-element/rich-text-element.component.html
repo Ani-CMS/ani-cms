@@ -2,6 +2,7 @@
 
 <h1 *ngIf="element?.elementType === ELEMENT_TYPE.H1">{{ element.data }}</h1>
 <p *ngIf="element?.elementType === ELEMENT_TYPE.P">{{ element.data }}</p>
+<img *ngIf="element?.elementType === ELEMENT_TYPE.IMG" [src]="element.data"/>
 
 <app-slideshow
   *ngIf="element?.elementType === ELEMENT_TYPE.SLIDESHOW"

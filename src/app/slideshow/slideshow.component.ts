@@ -18,7 +18,6 @@ export class SlideshowComponent implements OnInit, OnDestroy {
   private intervalId: number
 
   ngOnInit(): void {
-    console.log('SlideshowComponent', this.slideshow)
   }
 
   ngOnDestroy(): void {
