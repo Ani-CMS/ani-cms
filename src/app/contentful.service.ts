@@ -21,6 +21,24 @@ import { UpcomingEvent } from './pages/upcoming/upcoming-event/upcoming-event.co
     - Jeder subheader gleiches Pattern, stylen mit nth-child -> Titles austauschen.
     - Multiple links on one row
     - One single Subheader component?
+
+   Other
+   - all links target blank -> documentTOHTML parsing options
+   - upcmoing image margin
+   -upcoming event NAK opens itself check if link exists before displaying a tag
+   - upcoming margin between events needs to be increased
+   - upcomingevent new field video -> also add in html
+   - upcoming video field
+   - externalTexts are supposed to link and scroll down below -> utilize ids. .linkToLongTextId
+
+
+   <!--
+1 subnav component with inputs, used on home, films, works
+
+on home the inputs can be sorted alphabetically
+
+id of content used in url
+-->
  */
 
 @Injectable({

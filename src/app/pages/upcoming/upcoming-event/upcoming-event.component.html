@@ -1,4 +1,8 @@
-<a [href]="config.link" class="title">{{ config.title }}</a>
+<a *ngIf="config.link" [href]="config.link" target="_blank" class="title">{{
+  config.title
+}}</a>
+<a *ngIf="!config.link" class="title">{{ config.title }}</a>
+
 <span *ngIf="config.description">{{ config.description }}</span>
 <div class="date">
   <span *ngIf="config.from">{{ config.from | date: 'dd/MM/y HH:mm' }}</span>
