@@ -19,27 +19,15 @@ import { UpcomingEvent } from './pages/upcoming/upcoming-event/upcoming-event.co
   Subheader:
     - Jeder subheader gleiches Pattern, stylen mit nth-child -> Titles austauschen.
     - Multiple links on one row
-    - One single Subheader component?
-
+    - One single Subheader component with inputs, used on home, films, works
+    - on home the inputs can be sorted alphabetically
+    - id of content used in url
    Other
      // TODO Turn these $ functions, otherwise all requests are made on app startup
 
-   - upcoming margin between events needs to be increased -> Challenge Dani
-
-
-   - upcomingevent new field video -> also add in html
-
-
-   - externalTexts are supposed to link and scroll down below -> utilize ids.
+    - upcoming margin between events needs to be increased -> Challenge Dani
+    - externalTexts are supposed to link and scroll down below -> utilize ids.
       -> .linkToLongTextId https://stackoverflow.com/questions/44441089/angular4-scrolling-to-anchor
-
-   <!--
-1 subnav component with inputs, used on home, films, works
-
-on home the inputs can be sorted alphabetically
-
-id of content used in url
--->
  */
 
 @Injectable({
