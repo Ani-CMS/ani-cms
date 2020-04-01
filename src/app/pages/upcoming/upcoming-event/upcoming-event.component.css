@@ -1,4 +1,4 @@
-app-event span {
+app-upcoming-event span {
   display: block;
 }
 
@@ -7,14 +7,14 @@ app-event span {
 }
 
 /* Style encapsulation has to be broken in order to affect innerHTML elements */
-app-event article {
+app-upcoming-event article {
   margin: calc(var(--vertical-margin) / 2) 0;
 }
 
-app-event p {
+app-upcoming-event p {
   margin: 0;
 }
 
-app-event figure {
-  margin: 0
+app-upcoming-event figure {
+  margin: 0;
 }

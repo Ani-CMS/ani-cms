@@ -11,7 +11,8 @@ import { RichTextConfig } from '../../rich-text/rich-text.component'
 })
 export class TextsComponent implements OnInit {
   externalText$ = this.contentfulService.externalTexts$
-  richTextConfigs$: Observable<RichTextConfig[]> = this.contentfulService.texts$
+  richTextConfigs$: Observable<RichTextConfig[]> = this.contentfulService
+    .longTexts$
 
   constructor(
     private contentfulService: ContentfulService,

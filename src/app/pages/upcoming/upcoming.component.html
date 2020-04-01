@@ -1,3 +1,6 @@
 <h1>Upcoming - Past</h1>
 
-<app-event *ngFor="let event of events$ | async" [config]="event"></app-event>
+<app-upcoming-event
+  *ngFor="let event of upcomingEvents$ | async"
+  [config]="event"
+></app-upcoming-event>

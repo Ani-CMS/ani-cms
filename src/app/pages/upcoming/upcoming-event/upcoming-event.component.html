@@ -2,11 +2,13 @@
 <span *ngIf="config.description">{{ config.description }}</span>
 <div class="date">
   <span *ngIf="config.from">{{ config.from | date: 'dd/MM/y HH:mm' }}</span>
-  <span *ngIf="config.until"> - {{ config.until | date: 'dd/MM/y HH:mm' }}</span>
+  <span *ngIf="config.until">
+    - {{ config.until | date: 'dd/MM/y HH:mm' }}</span
+  >
 </div>
 <span *ngIf="config.location">{{ config.location }}</span>
-<article [innerHTML]="config.richText"></article>
+<app-rich-text [config]="config.richTextConfig"></app-rich-text>
 <figure *ngIf="config.image">
-  <img [alt]="config.imageDescription" [src]="config.image"/>
+  <img [alt]="config.imageDescription" [src]="config.image" />
   <figcaption>{{ config.imageDescription }}</figcaption>
 </figure>

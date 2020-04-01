@@ -11,6 +11,7 @@ import { About } from './pages/about/about.component'
 import { Slideshow, SlideshowComponent } from './slideshow/slideshow.component'
 import { BLOCKS } from '@contentful/rich-text-types'
 import { NewComponent, RichTextConfig } from './rich-text/rich-text.component'
+import { UpcomingEvent } from './pages/upcoming/upcoming-event/upcoming-event.component'
 
 /*
  TODO
@@ -32,18 +33,21 @@ export class ContentfulService {
     accessToken: 'yG8c6btCdKehQU8Of7viYjYcwg9ASsZJsRZ6gEKMJw8',
   })
   // TODO Turn these into functions, otherwise all requests are made on app startup
-  events$: Observable<Event[]> = from(
+  upcomingEvents$: Observable<UpcomingEvent[]> = from(
     this.client.getEntries({ content_type: 'event' })
   ).pipe(
     map((response) => {
-      return response.items.map((item: any) => {
-        return {
-          ...item.fields,
-          link: item.fields.link,
-          image: item.fields.image?.fields.file.url,
-          richText: documentToHtmlString(item.fields.freeText),
+      return response.items.map(
+        (item: any): UpcomingEvent => {
+          return {
+            ...item.fields,
+            image: item.fields.image ? item.fields.image.fields.file.url : null,
+            richTextConfig: item.fields.freeText
+              ? toRichTextConfig(item.fields.freeText)
+              : null,
+          }
         }
-      })
+      )
     })
   )
 
@@ -60,7 +64,7 @@ export class ContentfulService {
     })
   )
 
-  texts$: Observable<RichTextConfig[]> = from(
+  longTexts$: Observable<RichTextConfig[]> = from(
     this.client.getEntries({ content_type: 'text' })
   ).pipe(
     map((response: any) => {
