@@ -87,6 +87,7 @@ export class ContentfulService {
   )
 }
 
+// TODO Video
 const isImage = (node) =>
   node.data.target?.fields.file?.contentType === 'image/jpeg'
 const isSlideshow = (node) =>
@@ -112,7 +113,11 @@ const options: Options = {
         // an instantiate the component ourselves later.
         return null
       }
-      return '<h2>????????????</h2>'
+    },
+    [BLOCKS.EMBEDDED_ASSET]: (node, next) => {
+      if (isImage(node)) {
+        return `<img src="${node.data.target.fields.file.url}"/>`
+      }
     },
   },
 }
@@ -127,9 +132,6 @@ const toRichTextConfig = (richTextField: any): RichTextConfig => {
         component: SlideshowComponent,
         index,
       })
-    }
-    if (isImage(node)) {
-      newComponents.push() // TODO
     }
   })
   return {
