@@ -5,7 +5,7 @@
   [config]="externalText"
 >
 </app-external-text>
-<button (click)="onUp()">up</button>
+<button *ngIf="externalText$ | async" (click)="onUp()">up</button>
 
 <ng-container *ngFor="let text of texts$ | async">
   <app-text [config]="text"></app-text>
