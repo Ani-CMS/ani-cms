@@ -2,11 +2,11 @@ app-upcoming-event span {
   display: block;
 }
 
-.title {
+app-upcoming-event .title {
   color: var(--secondary-color);
 }
 
-.date span {
+app-upcoming-event .date span {
   display: inline;
 }
 
@@ -22,4 +22,8 @@ app-upcoming-event p {
 
 app-upcoming-event figure {
   margin: 0;
+}
+
+app-upcoming-event img {
+  margin-top: calc(var(--vertical-margin) / 2);
 }
