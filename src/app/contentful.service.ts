@@ -74,12 +74,6 @@ export class ContentfulService {
     })
   )
 
-  homeProjects$: Observable<RichTextConfig> = from(
-    this.client.getEntries({ content_type: 'homeProject' })
-  ).pipe(
-    map((response: any) => toRichTextConfig(response.items[0].fields.freeText))
-  )
-
   about$: Observable<About> = from(
     this.client.getEntries({ content_type: 'about' })
   ).pipe(
