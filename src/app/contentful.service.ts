@@ -8,7 +8,7 @@ import {
   Options,
 } from '@contentful/rich-text-html-renderer'
 import { Slideshow, SlideshowComponent } from './slideshow/slideshow.component'
-import { BLOCKS } from '@contentful/rich-text-types'
+import { BLOCKS, INLINES } from '@contentful/rich-text-types'
 import { NewComponent, RichTextConfig } from './rich-text/rich-text.component'
 import { UpcomingEvent } from './pages/upcoming/upcoming-event/upcoming-event.component'
 
@@ -29,7 +29,6 @@ import { UpcomingEvent } from './pages/upcoming/upcoming-event/upcoming-event.co
    - upcomingevent new field video -> also add in html
    - upcoming video field
    - externalTexts are supposed to link and scroll down below -> utilize ids. .linkToLongTextId
-
 
    <!--
 1 subnav component with inputs, used on home, films, works
@@ -129,6 +128,11 @@ const options: Options = {
       if (isImage(node)) {
         return `<img src="${node.data.target.fields.file.url}"/>`
       }
+    },
+    [INLINES.HYPERLINK]: (node, next) => {
+      return `<a href="${node.data.uri}" target="_blank">${next(
+        node.content
+      )}</>`
     },
   },
 }
