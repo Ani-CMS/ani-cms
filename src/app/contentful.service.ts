@@ -20,8 +20,6 @@ import { NewComponent, RichTextConfig } from './rich-text/rich-text.component'
     - Jeder subheader gleiches Pattern, stylen mit nth-child -> Titles austauschen.
     - Multiple links on one row
     - One single Subheader component?
-  Slideshows
-   - Move other richText to same approach and use one function to transform a richText field to arraz of elements everywhere
  */
 
 @Injectable({
@@ -81,11 +79,7 @@ export class ContentfulService {
   about$: Observable<About> = from(
     this.client.getEntries({ content_type: 'about' })
   ).pipe(
-    map((response: any) => {
-      return {
-        richText: documentToHtmlString(response.items[0].fields.freeText),
-      }
-    })
+    map((response: any) => toRichTextConfig(response.items[0].fields.freeText))
   )
 }
 
@@ -106,9 +100,12 @@ const toSlideshow = (node): Slideshow => {
 const options: Options = {
   renderNode: {
     [BLOCKS.EMBEDDED_ENTRY]: (node, next) => {
-      // TODO Switch here and new getType function
       if (isSlideshow(node)) {
-        // return `<div class="container-for-slideshow">CONTAINER FOR SLIDESHOW</div>`
+        // Here you can overwrite how specific nodes should be rendered e.g.
+        // return `<div class="slideshow">...</div>`
+        // However we don't want them to be rendered via a string, because
+        // Angular won't instantiate their class. Instead we save their index
+        // an instantiate the component ourselves later.
         return null
       }
       return '<h2>????????????</h2>'
