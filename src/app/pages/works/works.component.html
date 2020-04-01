@@ -1,4 +1,7 @@
-<p>Works Subheader here</p>
+<a
+  *ngFor="let work of works$ | async"
+  [routerLink]="'/works/' + work.urlPath"
+  >{{ work.linkText }}</a
+>
 
-<!-- TODO ngfor over WorkComponent. Listen for route change and just change the contents -->
-
+<app-rich-text [config]="(work$ | async)?.richTextConfig"></app-rich-text>

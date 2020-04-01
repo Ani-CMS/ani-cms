@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { createClient } from 'contentful'
 import { from, Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { map, shareReplay } from 'rxjs/operators'
 import { LinkedText } from './pages/texts/linked-text/linked-text.component'
 import {
   documentToHtmlString,
@@ -12,6 +12,7 @@ import { BLOCKS, INLINES } from '@contentful/rich-text-types'
 import { NewComponent, RichTextConfig } from './rich-text/rich-text.component'
 import { UpcomingEvent } from './pages/upcoming/upcoming-event/upcoming-event.component'
 import { LongText } from './pages/texts/texts.component'
+import { Work } from './pages/works/works.component'
 
 @Injectable({
   providedIn: 'root',
@@ -77,6 +78,22 @@ export class ContentfulService {
   ).pipe(
     map((response: any) => toRichTextConfig(response.items[0].fields.freeText))
   )
+
+  getWorks(): Observable<Work[]> {
+    return from(this.client.getEntries({ content_type: 'works' })).pipe(
+      map((response: any) =>
+        response.items.map((item) => {
+          return {
+            ...item.fields,
+            richTextConfig: item.fields.freeText
+              ? toRichTextConfig(item.fields.freeText)
+              : null,
+          }
+        })
+      ),
+      shareReplay(1)
+    )
+  }
 }
 
 // TODO Video
