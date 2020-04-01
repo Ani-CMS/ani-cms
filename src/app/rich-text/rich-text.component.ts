@@ -5,8 +5,10 @@ import {
   ComponentRef,
   ElementRef,
   Input,
+  OnChanges,
   OnDestroy,
   Renderer2,
+  SimpleChanges,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core'
@@ -27,7 +29,7 @@ export interface RichTextConfig {
   templateUrl: './rich-text.component.html',
   styleUrls: ['./rich-text.component.css'],
 })
-export class RichTextComponent implements OnDestroy {
+export class RichTextComponent implements OnDestroy, OnChanges {
   @Input() config: RichTextConfig
   componentRefs: Array<ComponentRef<any>> = []
 
@@ -35,12 +37,19 @@ export class RichTextComponent implements OnDestroy {
   container: ViewContainerRef
   @ViewChild('container') elementRef: ElementRef<HTMLDivElement>
 
+  innerHtmlRendered = false
+
   constructor(
     private resolver: ComponentFactoryResolver,
     private renderer: Renderer2
   ) {}
 
   onInnerHtmlRendered() {
+    // Stopping infinite loop, because inserting new components, triggers new html render
+    if (this.innerHtmlRendered) {
+      return
+    }
+    this.innerHtmlRendered = true
     this.config.newComponents.forEach((newComponent) =>
       this.insertComponent(newComponent)
     )
@@ -63,6 +72,10 @@ export class RichTextComponent implements OnDestroy {
       containerNativeElement.children[newComponent.index]
     )
     this.componentRefs.push(componentRef)
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.innerHtmlRendered = false
   }
 
   ngOnDestroy(): void {
