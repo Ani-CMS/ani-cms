@@ -66,12 +66,9 @@ export class ContentfulService {
     this.client.getEntries({ content_type: 'text' })
   ).pipe(
     map((response: any) => {
-      return response.items.map((item) => {
-        return {
-          newComponents: [],
-          richText: documentToHtmlString(item.fields.freeText),
-        }
-      })
+      return response.items.map((item) =>
+        toRichTextConfig(item.fields.freeText)
+      )
     })
   )
 
@@ -109,6 +106,7 @@ const toSlideshow = (node): Slideshow => {
 const options: Options = {
   renderNode: {
     [BLOCKS.EMBEDDED_ENTRY]: (node, next) => {
+      // TODO Switch here and new getType function
       if (isSlideshow(node)) {
         // return `<div class="container-for-slideshow">CONTAINER FOR SLIDESHOW</div>`
         return null
