@@ -1,6 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core'
 import { RichTextConfig } from '../../../rich-text/rich-text.component'
-import { DomSanitizer } from '@angular/platform-browser'
 
 export interface UpcomingEvent {
   id: string
@@ -12,6 +11,8 @@ export interface UpcomingEvent {
   location?: string
   richTextConfig?: RichTextConfig
   videoLink?: string
+  videoWidth: string
+  videoHeight: string
   image?: string
   imageDescription?: string
 }

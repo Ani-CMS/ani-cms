@@ -30,5 +30,9 @@
   *ngIf="config.videoLink"
   [src]="config.videoLink | safe: 'resourceUrl'"
   frameborder="0"
+  [height]="config.videoHeight"
+  [width]="config.videoWidth"
+  allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
 >
 </iframe>
