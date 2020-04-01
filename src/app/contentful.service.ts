@@ -29,9 +29,7 @@ import { LongText } from './pages/texts/texts.component'
     - PWA
 
     - upcoming margin between events needs to be increased -> Challenge Dani
-    - externalTexts are supposed to link and scroll down below -> utilize ids.
-      -> .scrollToLongTextId https://stackoverflow.com/questions/44441089/angular4-scrolling-to-anchor
- */
+     */
 
 @Injectable({
   providedIn: 'root',
@@ -78,14 +76,17 @@ export class ContentfulService {
     this.client.getEntries({ content_type: 'text' })
   ).pipe(
     map((response: any) => {
-      return response.items.map(
-        (item): LongText => {
-          return {
-            id: item.sys.id,
-            richTextConfig: toRichTextConfig(item.fields.freeText),
+      return response.items
+        .map(
+          (item): LongText => {
+            return {
+              ...item.fields,
+              id: item.sys.id,
+              richTextConfig: toRichTextConfig(item.fields.freeText),
+            }
           }
-        }
-      )
+        )
+        .sort((a, b) => a.index - b.index)
     })
   )
 

@@ -6,6 +6,7 @@ import { RichTextConfig } from '../../rich-text/rich-text.component'
 
 export interface LongText {
   id: string
+  index: number
   richTextConfig: RichTextConfig
 }
 @Component({
