@@ -1,0 +1,8 @@
+<a *ngIf="config.link" [href]="config.link" target="_blank">{{
+  config.title
+}}</a>
+<a *ngIf="config.scrollToLongTextId" (click)="onLingToLongTextIdClick()">{{
+  config.title
+}}</a>
+
+<p *ngIf="config.description">{{ config.description }}</p>

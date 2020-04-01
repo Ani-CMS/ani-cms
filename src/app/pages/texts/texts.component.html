@@ -1,15 +1,15 @@
 <h1>Texts</h1>
 
-<ng-container *ngIf="externalText$ | async as externalTexts">
-  <app-external-text
-    *ngFor="let externalText of externalTexts"
-    [config]="externalText"
-  >
-  </app-external-text>
+<ng-container *ngIf="linkedText$ | async as linkedTexts">
+  <app-linked-text *ngFor="let linkedText of linkedTexts" [config]="linkedText">
+  </app-linked-text>
   <button (click)="onUp()">up</button>
 </ng-container>
 
-<ng-container *ngFor="let richTextConfig of richTextConfigs$ | async">
-  <app-rich-text [config]="richTextConfig"></app-rich-text>
+<ng-container *ngFor="let longText of longTexts$ | async">
+  <app-rich-text
+    [attr.data-id]="longText.id"
+    [config]="longText.richTextConfig"
+  ></app-rich-text>
   <button (click)="onUp()">up</button>
 </ng-container>

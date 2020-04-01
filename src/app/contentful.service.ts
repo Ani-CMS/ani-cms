@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { createClient } from 'contentful'
 import { from, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
-import { ExternalText } from './pages/texts/external-text/external-text.component'
+import { LinkedText } from './pages/texts/linked-text/linked-text.component'
 import {
   documentToHtmlString,
   Options,
@@ -11,6 +11,7 @@ import { Slideshow, SlideshowComponent } from './slideshow/slideshow.component'
 import { BLOCKS, INLINES } from '@contentful/rich-text-types'
 import { NewComponent, RichTextConfig } from './rich-text/rich-text.component'
 import { UpcomingEvent } from './pages/upcoming/upcoming-event/upcoming-event.component'
+import { LongText } from './pages/texts/texts.component'
 
 /*
  TODO
@@ -23,11 +24,13 @@ import { UpcomingEvent } from './pages/upcoming/upcoming-event/upcoming-event.co
     - on home the inputs can be sorted alphabetically
     - id of content used in url
    Other
-     // TODO Turn these $ functions, otherwise all requests are made on app startup
+    - on text page h1 full width in rich text
+    - Turn these $ functions, otherwise all requests are made on app startup
+    - PWA
 
     - upcoming margin between events needs to be increased -> Challenge Dani
     - externalTexts are supposed to link and scroll down below -> utilize ids.
-      -> .linkToLongTextId https://stackoverflow.com/questions/44441089/angular4-scrolling-to-anchor
+      -> .scrollToLongTextId https://stackoverflow.com/questions/44441089/angular4-scrolling-to-anchor
  */
 
 @Injectable({
@@ -58,7 +61,7 @@ export class ContentfulService {
     })
   )
 
-  externalTexts$: Observable<ExternalText[]> = from(
+  linkedTexts$: Observable<LinkedText[]> = from(
     this.client.getEntries({ content_type: 'externalText' })
   ).pipe(
     map((response) => {
@@ -71,12 +74,17 @@ export class ContentfulService {
     })
   )
 
-  longTexts$: Observable<RichTextConfig[]> = from(
+  longTexts$: Observable<LongText[]> = from(
     this.client.getEntries({ content_type: 'text' })
   ).pipe(
     map((response: any) => {
-      return response.items.map((item) =>
-        toRichTextConfig(item.fields.freeText)
+      return response.items.map(
+        (item): LongText => {
+          return {
+            id: item.sys.id,
+            richTextConfig: toRichTextConfig(item.fields.freeText),
+          }
+        }
       )
     })
   )

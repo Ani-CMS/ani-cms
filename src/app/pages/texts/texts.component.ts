@@ -4,15 +4,18 @@ import { Title } from '@angular/platform-browser'
 import { Observable } from 'rxjs'
 import { RichTextConfig } from '../../rich-text/rich-text.component'
 
+export interface LongText {
+  id: string
+  richTextConfig: RichTextConfig
+}
 @Component({
   selector: 'app-texts',
   templateUrl: './texts.component.html',
   styleUrls: ['./texts.component.css'],
 })
 export class TextsComponent implements OnInit {
-  externalText$ = this.contentfulService.externalTexts$
-  richTextConfigs$: Observable<RichTextConfig[]> = this.contentfulService
-    .longTexts$
+  linkedText$ = this.contentfulService.linkedTexts$
+  longTexts$: Observable<LongText[]> = this.contentfulService.longTexts$
 
   constructor(
     private contentfulService: ContentfulService,

@@ -10,7 +10,7 @@ import { UpcomingComponent } from './pages/upcoming/upcoming.component'
 import { AboutComponent } from './pages/about/about.component'
 import { WorksComponent } from './pages/works/works.component'
 import { FilmsComponent } from './pages/films/films.component'
-import { ExternalTextComponent } from './pages/texts/external-text/external-text.component'
+import { LinkedTextComponent } from './pages/texts/linked-text/linked-text.component'
 import { SlideshowComponent } from './slideshow/slideshow.component'
 import { HomeComponent } from './pages/home/home.component'
 import { MutationObserverDirective } from './rich-text/mutation-observer.directive'
@@ -27,7 +27,7 @@ import { SafePipe } from './safe.pipe'
     AboutComponent,
     WorksComponent,
     FilmsComponent,
-    ExternalTextComponent,
+    LinkedTextComponent,
     SlideshowComponent,
     HomeComponent,
     MutationObserverDirective,
