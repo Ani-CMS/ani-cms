@@ -2,6 +2,10 @@ app-upcoming-event span {
   display: block;
 }
 
+.title {
+  color: var(--secondary-color);
+}
+
 .date span {
   display: inline;
 }

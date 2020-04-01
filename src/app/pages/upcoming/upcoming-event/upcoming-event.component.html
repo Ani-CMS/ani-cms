@@ -1,17 +1,20 @@
 <a *ngIf="config.link" [href]="config.link" target="_blank" class="title">{{
   config.title
 }}</a>
-<a *ngIf="!config.link" class="title">{{ config.title }}</a>
+<span *ngIf="!config.link" class="title">{{ config.title }}</span>
 
 <span *ngIf="config.description">{{ config.description }}</span>
-<div class="date">
+<div *ngIf="config.from" class="date">
   <span *ngIf="config.from">{{ config.from | date: 'dd/MM/y HH:mm' }}</span>
   <span *ngIf="config.until">
     - {{ config.until | date: 'dd/MM/y HH:mm' }}</span
   >
 </div>
 <span *ngIf="config.location">{{ config.location }}</span>
-<app-rich-text [config]="config.richTextConfig"></app-rich-text>
+<app-rich-text
+  *ngIf="config.richTextConfig"
+  [config]="config.richTextConfig"
+></app-rich-text>
 <figure *ngIf="config.image">
   <img [alt]="config.imageDescription" [src]="config.image" />
   <figcaption>{{ config.imageDescription }}</figcaption>
