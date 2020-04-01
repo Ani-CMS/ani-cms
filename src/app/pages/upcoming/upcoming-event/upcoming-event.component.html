@@ -12,10 +12,16 @@
 </div>
 <span *ngIf="config.location">{{ config.location }}</span>
 <app-rich-text
-  *ngIf="config.richTextConfig"
+  *ngIf="
+    config.richTextConfig?.newComponents.length > 0 ||
+    config.richTextConfig?.richText
+  "
   [config]="config.richTextConfig"
 ></app-rich-text>
-<figure *ngIf="config.image">
-  <img [alt]="config.imageDescription" [src]="config.image" />
-  <figcaption>{{ config.imageDescription }}</figcaption>
-</figure>
+<ng-container *ngIf="config.image">
+  <img *ngIf="!config.imageDescription" [src]="config.image" />
+  <figure *ngIf="config.imageDescription">
+    <img [alt]="config.imageDescription" [src]="config.image" />
+    <figcaption>{{ config.imageDescription }}</figcaption>
+  </figure>
+</ng-container>
