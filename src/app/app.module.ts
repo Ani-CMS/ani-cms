@@ -15,6 +15,7 @@ import { SlideshowComponent } from './slideshow/slideshow.component'
 import { HomeComponent } from './pages/home/home.component'
 import { MutationObserverDirective } from './rich-text/mutation-observer.directive'
 import { RichTextComponent } from './rich-text/rich-text.component'
+import { SafePipe } from './safe.pipe'
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { RichTextComponent } from './rich-text/rich-text.component'
     HomeComponent,
     MutationObserverDirective,
     RichTextComponent,
+    SafePipe,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

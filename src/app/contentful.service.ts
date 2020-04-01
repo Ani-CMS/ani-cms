@@ -22,11 +22,14 @@ import { UpcomingEvent } from './pages/upcoming/upcoming-event/upcoming-event.co
     - One single Subheader component?
 
    Other
-   - upcmoing image margin
-   -upcoming event NAK opens itself check if link exists before displaying a tag
-   - upcoming margin between events needs to be increased
+     // TODO Turn these $ functions, otherwise all requests are made on app startup
+
+   - upcoming margin between events needs to be increased -> Challenge Dani
+
+
    - upcomingevent new field video -> also add in html
-   - upcoming video field
+
+
    - externalTexts are supposed to link and scroll down below -> utilize ids.
       -> .linkToLongTextId https://stackoverflow.com/questions/44441089/angular4-scrolling-to-anchor
 
@@ -48,7 +51,7 @@ export class ContentfulService {
     environment: 'master',
     accessToken: 'yG8c6btCdKehQU8Of7viYjYcwg9ASsZJsRZ6gEKMJw8',
   })
-  // TODO Turn these into functions, otherwise all requests are made on app startup
+
   upcomingEvents$: Observable<UpcomingEvent[]> = from(
     this.client.getEntries({ content_type: 'event' })
   ).pipe(

@@ -24,6 +24,7 @@ app-upcoming-event figure {
   margin: 0;
 }
 
-app-upcoming-event img {
+app-upcoming-event img,
+iframe {
   margin-top: calc(var(--vertical-margin) / 2);
 }
