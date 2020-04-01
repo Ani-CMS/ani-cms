@@ -22,13 +22,13 @@ import { UpcomingEvent } from './pages/upcoming/upcoming-event/upcoming-event.co
     - One single Subheader component?
 
    Other
-   - all links target blank -> documentTOHTML parsing options
    - upcmoing image margin
    -upcoming event NAK opens itself check if link exists before displaying a tag
    - upcoming margin between events needs to be increased
    - upcomingevent new field video -> also add in html
    - upcoming video field
-   - externalTexts are supposed to link and scroll down below -> utilize ids. .linkToLongTextId
+   - externalTexts are supposed to link and scroll down below -> utilize ids.
+      -> .linkToLongTextId https://stackoverflow.com/questions/44441089/angular4-scrolling-to-anchor
 
    <!--
 1 subnav component with inputs, used on home, films, works
