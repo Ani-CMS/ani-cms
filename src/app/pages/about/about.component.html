@@ -1,2 +1,2 @@
 <h1>About</h1>
-<article [innerHTML]="(about$ | async)?.richText"></article>
+<app-rich-text [config]="richTextConfig$ | async"></app-rich-text>

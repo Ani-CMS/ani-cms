@@ -7,7 +7,6 @@ import {
   documentToHtmlString,
   Options,
 } from '@contentful/rich-text-html-renderer'
-import { About } from './pages/about/about.component'
 import { Slideshow, SlideshowComponent } from './slideshow/slideshow.component'
 import { BLOCKS } from '@contentful/rich-text-types'
 import { NewComponent, RichTextConfig } from './rich-text/rich-text.component'
@@ -92,7 +91,7 @@ export class ContentfulService {
     })
   )
 
-  about$: Observable<About> = from(
+  about$: Observable<RichTextConfig> = from(
     this.client.getEntries({ content_type: 'about' })
   ).pipe(
     map((response: any) => toRichTextConfig(response.items[0].fields.freeText))

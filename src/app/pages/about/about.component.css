@@ -1,3 +1,4 @@
-article {
+app-rich-text {
   margin: var(--vertical-margin) 0;
+  display: block;
 }
