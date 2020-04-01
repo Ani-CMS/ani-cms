@@ -1,11 +1,11 @@
-app-linked-text,
+app-texts app-linked-text,
 app-text,
 button {
   margin: var(--vertical-margin) 0;
   display: block;
 }
 
-button {
+app-texts button {
   background: none;
   border: none;
   cursor: pointer;
@@ -14,7 +14,10 @@ button {
   font-size: inherit;
 }
 
-app-rich-text {
+app-texts app-rich-text {
   display: block;
+}
+
+app-texts app-rich-text p {
   max-width: var(--text-max-width);
 }

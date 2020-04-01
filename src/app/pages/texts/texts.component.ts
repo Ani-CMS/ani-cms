@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewEncapsulation } from '@angular/core'
 import { ContentfulService } from '../../contentful.service'
 import { Title } from '@angular/platform-browser'
 import { Observable } from 'rxjs'
@@ -12,6 +12,7 @@ export interface LongText {
   selector: 'app-texts',
   templateUrl: './texts.component.html',
   styleUrls: ['./texts.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class TextsComponent implements OnInit {
   linkedText$ = this.contentfulService.linkedTexts$
