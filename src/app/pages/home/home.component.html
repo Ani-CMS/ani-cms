@@ -1,6 +1,1 @@
-<div
-  #container
-  appMutationObserver
-  [innerHTML]="(homeProjects$ | async)?.richText"
-  (innerHtmlAdded)="onInnerHtmlRendered()"
-></div>
+<app-rich-text [config]="richTextConfig$ | async"></app-rich-text>

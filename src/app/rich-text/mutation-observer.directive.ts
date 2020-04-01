@@ -1,35 +1,33 @@
-import { Directive, ElementRef, EventEmitter, OnDestroy, Output } from '@angular/core'
+import {
+  Directive,
+  ElementRef,
+  EventEmitter,
+  OnDestroy,
+  Output,
+} from '@angular/core'
 
 @Directive({
-  selector: '[appMutationObserver]'
+  selector: '[appMutationObserver]',
 })
 // TODO Rename to firstInnerHTMLRendered
 export class MutationObserverDirective implements OnDestroy {
   _observer: MutationObserver
   @Output() innerHtmlAdded = new EventEmitter()
-
+  initialRenderComplete = false
   constructor(private el: ElementRef) {
     this._observer = new MutationObserver((mutations) => {
       // Needed to stop invite loop. After the first time html is rendered via the async pipe,
       // we replace a div with e.g. a Slideshow, which leads to another mutation, which call replaceComponent again
-      // TODO Remove this logic
-      const afterReplacingAComponent = mutations.some(
-        (mutation) => mutation.removedNodes.length > 0
-      )
-      if (afterReplacingAComponent) {
+      if (this.initialRenderComplete) {
         return
       }
-      // TODO Just emit the first time without any check and then set alreadyEmitted to false and check for that
-      mutations.forEach((mutation, index) => {
-        if (mutation.type === 'childList') {
-          this.innerHtmlAdded.emit()
-        }
-      })
+      this.initialRenderComplete = true
+      this.innerHtmlAdded.emit()
     })
     this._observer.observe(this.el.nativeElement, {
       attributes: true,
       childList: true,
-      characterData: true
+      characterData: true,
     })
   }
 

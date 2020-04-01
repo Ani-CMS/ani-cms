@@ -10,8 +10,8 @@ import {
 import { About } from './pages/about/about.component'
 import { Text } from './pages/texts/text/text.component'
 import { Slideshow, SlideshowComponent } from './slideshow/slideshow.component'
-import { ElementToReplace, HomeProjects } from './pages/home/home.component'
 import { BLOCKS } from '@contentful/rich-text-types'
+import { NewComponent, RichTextConfig } from './rich-text/rich-text.component'
 
 /*
  TODO
@@ -77,26 +77,26 @@ export class ContentfulService {
     })
   )
 
-  homeProjects$: Observable<HomeProjects> = from(
+  homeProjects$: Observable<RichTextConfig> = from(
     this.client.getEntries({ content_type: 'homeProject' })
   ).pipe(
     map((response: any) => {
-      const elementsToReplace: ElementToReplace[] = []
+      const newComponents: NewComponent[] = []
       const nodes = response.items[0].fields.freeText.content
       nodes.forEach((node, index) => {
         if (isSlideshow(node)) {
-          elementsToReplace.push({
+          newComponents.push({
             config: toSlideshow(node),
             component: SlideshowComponent,
             index,
           })
         }
         if (isImage(node)) {
-          elementsToReplace.push() // TODO
+          newComponents.push() // TODO
         }
       })
       return {
-        elementsToReplace,
+        newComponents,
         richText: documentToHtmlString(
           response.items[0].fields.freeText,
           options
@@ -134,7 +134,8 @@ const options: Options = {
   renderNode: {
     [BLOCKS.EMBEDDED_ENTRY]: (node, next) => {
       if (isSlideshow(node)) {
-        return `<div class="container-for-slideshow">CONTAINER FOR SLIDESHOW</div>`
+        // return `<div class="container-for-slideshow">CONTAINER FOR SLIDESHOW</div>`
+        return null
       }
       return '<h2>????????????</h2>'
     },
