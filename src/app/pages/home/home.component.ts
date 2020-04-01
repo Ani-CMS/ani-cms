@@ -8,7 +8,7 @@ import {
   Renderer2,
   ViewChild,
   ViewContainerRef,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core'
 import { ContentfulService } from '../../contentful.service'
 import { tap } from 'rxjs/operators'
@@ -28,7 +28,7 @@ export interface HomeProjects {
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnDestroy {
   elementsToReplace: ElementToReplace[]
@@ -48,33 +48,18 @@ export class HomeComponent implements OnDestroy {
     private contentfulService: ContentfulService,
     private resolver: ComponentFactoryResolver,
     private renderer: Renderer2
-  ) {
-  }
+  ) {}
 
   onInnerHtmlRendered() {
-    console.count('innerHTMLRendered')
-    // const slideshowContainers = this.elementRef.nativeElement.querySelectorAll('.container-for-slideshow')
-    // const children = Array.from(this.elementRef.nativeElement.children)
-    // const components = []
-    // children.forEach((element, index) => {
-    //   if (element.classList.contains('container-for-slideshow')) {
-    //     components.push({ component: SlideshowComponent, index, config: null }) // get the input
-    //   }
-    // })
-    // TODO Watch network requests, take(1)
     this.elementsToReplace.forEach((element) => this.replaceComponent(element))
   }
 
   replaceComponent(elementToReplace: ElementToReplace) {
-    // this.container.clear()
     const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(
       elementToReplace.component
     )
     // TODO Delete dev.container-for
-    const componentRef = this.container.createComponent(
-      factory
-      // elementToReplace.index
-    )
+    const componentRef = this.container.createComponent(factory)
     if (elementToReplace.config) {
       componentRef.instance.config = elementToReplace.config
       componentRef.changeDetectorRef.detectChanges()

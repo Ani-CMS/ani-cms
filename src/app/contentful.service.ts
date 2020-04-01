@@ -3,7 +3,10 @@ import { createClient } from 'contentful'
 import { from, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { ExternalText } from './pages/texts/external-text/external-text.component'
-import { documentToHtmlString, Options } from '@contentful/rich-text-html-renderer'
+import {
+  documentToHtmlString,
+  Options,
+} from '@contentful/rich-text-html-renderer'
 import { About } from './pages/about/about.component'
 import { Text } from './pages/texts/text/text.component'
 import { Slideshow, SlideshowComponent } from './slideshow/slideshow.component'
@@ -12,8 +15,6 @@ import { BLOCKS } from '@contentful/rich-text-types'
 
 /*
  TODO
-  RichTextElement
-    - In other branch delete RichTextElement and try https://github.com/angular/angular/issues/21163
   Mobile
     - Check on real phone
   Subheader:
@@ -25,15 +26,15 @@ import { BLOCKS } from '@contentful/rich-text-types'
  */
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ContentfulService {
   private client = createClient({
     space: 'hy4v2om2p6ry',
     environment: 'master',
-    accessToken: 'yG8c6btCdKehQU8Of7viYjYcwg9ASsZJsRZ6gEKMJw8'
+    accessToken: 'yG8c6btCdKehQU8Of7viYjYcwg9ASsZJsRZ6gEKMJw8',
   })
-
+  // TODO Turn these into functions, otherwise all requests are made on app startup
   events$: Observable<Event[]> = from(
     this.client.getEntries({ content_type: 'event' })
   ).pipe(
@@ -43,7 +44,7 @@ export class ContentfulService {
           ...item.fields,
           link: item.fields.link,
           image: item.fields.image?.fields.file.url,
-          richText: documentToHtmlString(item.fields.freeText)
+          richText: documentToHtmlString(item.fields.freeText),
         }
       })
     })
@@ -56,7 +57,7 @@ export class ContentfulService {
       return response.items.map((item: any) => {
         return {
           ...item.fields,
-          link: item.fields.link
+          link: item.fields.link,
         }
       })
     })
@@ -70,7 +71,7 @@ export class ContentfulService {
         return {
           ...item.fields,
           richTextTitle: documentToHtmlString(item.fields.text),
-          richText: documentToHtmlString(item.fields.freeText)
+          richText: documentToHtmlString(item.fields.freeText),
         }
       })
     })
@@ -87,7 +88,7 @@ export class ContentfulService {
           elementsToReplace.push({
             config: toSlideshow(node),
             component: SlideshowComponent,
-            index
+            index,
           })
         }
         if (isImage(node)) {
@@ -99,7 +100,7 @@ export class ContentfulService {
         richText: documentToHtmlString(
           response.items[0].fields.freeText,
           options
-        )
+        ),
       }
     })
   )
@@ -109,7 +110,7 @@ export class ContentfulService {
   ).pipe(
     map((response: any) => {
       return {
-        richText: documentToHtmlString(response.items[0].fields.freeText)
+        richText: documentToHtmlString(response.items[0].fields.freeText),
       }
     })
   )
@@ -125,7 +126,7 @@ const toSlideshow = (node): Slideshow => {
     height: node.data.target.fields.height,
     imageUrls: node.data.target.fields.slideshowImage.map(
       (image) => 'https:' + image.fields.file.url
-    )
+    ),
   }
 }
 
@@ -136,6 +137,6 @@ const options: Options = {
         return `<div class="container-for-slideshow">CONTAINER FOR SLIDESHOW</div>`
       }
       return '<h2>????????????</h2>'
-    }
-  }
+    },
+  },
 }
