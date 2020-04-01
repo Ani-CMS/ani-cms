@@ -7,7 +7,6 @@ import { RichTextConfig } from '../../rich-text/rich-text.component'
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent {
   richTextConfig$: Observable<RichTextConfig> = this.contentfulService

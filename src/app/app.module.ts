@@ -11,7 +11,6 @@ import { AboutComponent } from './pages/about/about.component'
 import { WorksComponent } from './pages/works/works.component'
 import { FilmsComponent } from './pages/films/films.component'
 import { ExternalTextComponent } from './pages/texts/external-text/external-text.component'
-import { TextComponent } from './pages/texts/text/text.component'
 import { SlideshowComponent } from './slideshow/slideshow.component'
 import { HomeComponent } from './pages/home/home.component'
 import { MutationObserverDirective } from './rich-text/mutation-observer.directive'
@@ -28,7 +27,6 @@ import { RichTextComponent } from './rich-text/rich-text.component'
     WorksComponent,
     FilmsComponent,
     ExternalTextComponent,
-    TextComponent,
     SlideshowComponent,
     HomeComponent,
     MutationObserverDirective,

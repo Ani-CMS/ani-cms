@@ -8,7 +8,6 @@ import {
   Options,
 } from '@contentful/rich-text-html-renderer'
 import { About } from './pages/about/about.component'
-import { Text } from './pages/texts/text/text.component'
 import { Slideshow, SlideshowComponent } from './slideshow/slideshow.component'
 import { BLOCKS } from '@contentful/rich-text-types'
 import { NewComponent, RichTextConfig } from './rich-text/rich-text.component'
@@ -63,14 +62,13 @@ export class ContentfulService {
     })
   )
 
-  text$: Observable<Text[]> = from(
+  texts$: Observable<RichTextConfig[]> = from(
     this.client.getEntries({ content_type: 'text' })
   ).pipe(
-    map((response) => {
-      return response.items.map((item: any) => {
+    map((response: any) => {
+      return response.items.map((item) => {
         return {
-          ...item.fields,
-          richTextTitle: documentToHtmlString(item.fields.text),
+          newComponents: [],
           richText: documentToHtmlString(item.fields.freeText),
         }
       })

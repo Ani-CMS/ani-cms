@@ -1,4 +1,6 @@
-app-external-text, app-text, button {
+app-external-text,
+app-text,
+button {
   margin: var(--vertical-margin) 0;
   display: block;
 }
@@ -10,4 +12,9 @@ button {
   font-weight: bold;
   color: var(--secondary-color);
   font-size: inherit;
+}
+
+app-rich-text {
+  display: block;
+  max-width: var(--text-max-width);
 }
