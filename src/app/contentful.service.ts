@@ -78,29 +78,7 @@ export class ContentfulService {
   homeProjects$: Observable<RichTextConfig> = from(
     this.client.getEntries({ content_type: 'homeProject' })
   ).pipe(
-    map((response: any) => {
-      const newComponents: NewComponent[] = []
-      const nodes = response.items[0].fields.freeText.content
-      nodes.forEach((node, index) => {
-        if (isSlideshow(node)) {
-          newComponents.push({
-            config: toSlideshow(node),
-            component: SlideshowComponent,
-            index,
-          })
-        }
-        if (isImage(node)) {
-          newComponents.push() // TODO
-        }
-      })
-      return {
-        newComponents,
-        richText: documentToHtmlString(
-          response.items[0].fields.freeText,
-          options
-        ),
-      }
-    })
+    map((response: any) => toRichTextConfig(response.items[0].fields.freeText))
   )
 
   about$: Observable<About> = from(
@@ -138,4 +116,25 @@ const options: Options = {
       return '<h2>????????????</h2>'
     },
   },
+}
+
+const toRichTextConfig = (richTextField: any): RichTextConfig => {
+  const newComponents: NewComponent[] = []
+  const nodes = richTextField.content
+  nodes.forEach((node, index) => {
+    if (isSlideshow(node)) {
+      newComponents.push({
+        config: toSlideshow(node),
+        component: SlideshowComponent,
+        index,
+      })
+    }
+    if (isImage(node)) {
+      newComponents.push() // TODO
+    }
+  })
+  return {
+    newComponents,
+    richText: documentToHtmlString(richTextField, options),
+  }
 }
