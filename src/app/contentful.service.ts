@@ -13,6 +13,7 @@ import { NewComponent, RichTextConfig } from './rich-text/rich-text.component'
 import { UpcomingEvent } from './pages/upcoming/upcoming-event/upcoming-event.component'
 import { LongText } from './pages/texts/texts.component'
 import { Work } from './pages/works/works.component'
+import { Film } from './pages/films/films.component'
 
 @Injectable({
   providedIn: 'root',
@@ -94,7 +95,7 @@ export class ContentfulService {
     )
   )
 
-  films$: Observable<any[]> = from(
+  films$: Observable<Film[]> = from(
     this.client.getEntries({ content_type: 'films' })
   ).pipe(
     map((response: any) =>
