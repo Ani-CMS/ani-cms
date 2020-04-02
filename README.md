@@ -11,7 +11,6 @@
     - on home the inputs can be sorted alphabetically
     - id of content used in url
    Other
-    - Turn these $ functions, otherwise all requests are made on app startup + shareReplay
     - PWA
     - upcoming margin between events needs to be increased -> Challenge Dani
     

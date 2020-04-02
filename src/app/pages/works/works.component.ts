@@ -19,7 +19,7 @@ export interface Work {
 })
 export class WorksComponent implements OnInit {
   id$ = this.route.params.pipe(pluck('id'))
-  works$: Observable<Work[]> = this.contentfulService.getWorks()
+  works$: Observable<Work[]> = this.contentfulService.works$
   work$: Observable<Work> = this.id$.pipe(
     switchMap((id) =>
       this.works$.pipe(

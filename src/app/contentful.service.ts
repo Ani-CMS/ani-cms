@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { createClient } from 'contentful'
 import { from, Observable } from 'rxjs'
-import { map, shareReplay } from 'rxjs/operators'
+import { map } from 'rxjs/operators'
 import { LinkedText } from './pages/texts/linked-text/linked-text.component'
 import {
   documentToHtmlString,
@@ -79,21 +79,20 @@ export class ContentfulService {
     map((response: any) => toRichTextConfig(response.items[0].fields.freeText))
   )
 
-  getWorks(): Observable<Work[]> {
-    return from(this.client.getEntries({ content_type: 'works' })).pipe(
-      map((response: any) =>
-        response.items.map((item) => {
-          return {
-            ...item.fields,
-            richTextConfig: item.fields.freeText
-              ? toRichTextConfig(item.fields.freeText)
-              : null,
-          }
-        })
-      ),
-      shareReplay(1)
+  works$: Observable<Work[]> = from(
+    this.client.getEntries({ content_type: 'works' })
+  ).pipe(
+    map((response: any) =>
+      response.items.map((item) => {
+        return {
+          ...item.fields,
+          richTextConfig: item.fields.freeText
+            ? toRichTextConfig(item.fields.freeText)
+            : null,
+        }
+      })
     )
-  }
+  )
 }
 
 // TODO Video
