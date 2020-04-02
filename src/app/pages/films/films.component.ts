@@ -35,7 +35,7 @@ export class FilmsComponent implements OnInit {
         links: films.map((film) => {
           return {
             linkText: film.linkText,
-            urlPath: film.urlPath,
+            urlPath: '/films/' + film.urlPath,
           }
         }),
         urlSubdirectory: 'films',

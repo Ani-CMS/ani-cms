@@ -34,7 +34,7 @@ export class WorksComponent implements OnInit {
         links: works.map((work) => {
           return {
             linkText: work.linkText,
-            urlPath: work.urlPath,
+            urlPath: '/works/' + work.urlPath,
           }
         }),
         urlSubdirectory: 'works',
