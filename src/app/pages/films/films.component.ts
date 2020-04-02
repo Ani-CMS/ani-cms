@@ -5,10 +5,9 @@ import { map, pluck, switchMap } from 'rxjs/operators'
 import { Observable } from 'rxjs'
 import { ContentfulService } from '../../contentful.service'
 import { ActivatedRoute } from '@angular/router'
-import { Work } from '../works/works.component'
 import { SubheaderConfig } from '../../sub-header/subheader.component'
 
-export interface Films {
+export interface Film {
   linkText: string
   urlPath: string
   richTextConfig: RichTextConfig
@@ -21,8 +20,8 @@ export interface Films {
 })
 export class FilmsComponent implements OnInit {
   id$ = this.route.params.pipe(pluck('id'))
-  films$: Observable<Work[]> = this.contentfulService.films$
-  film$: Observable<Work> = this.id$.pipe(
+  films$: Observable<Film[]> = this.contentfulService.films$
+  film$: Observable<Film> = this.id$.pipe(
     switchMap((id) =>
       this.films$.pipe(
         map((films) => films.find((film) => film.urlPath === id))
