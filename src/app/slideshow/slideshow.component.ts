@@ -9,7 +9,7 @@ export interface Slideshow {
 @Component({
   selector: 'app-slideshow',
   templateUrl: './slideshow.component.html',
-  styleUrls: ['./slideshow.component.css']
+  styleUrls: ['./slideshow.component.css'],
 })
 export class SlideshowComponent implements OnInit, OnDestroy {
   @Input() config: Slideshow
@@ -17,8 +17,7 @@ export class SlideshowComponent implements OnInit, OnDestroy {
   public imageIndex = 0
   private intervalId: number
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     clearInterval(this.intervalId)
@@ -38,7 +37,7 @@ export class SlideshowComponent implements OnInit, OnDestroy {
   }
 
   private startSlideShow() {
-    this.intervalId = setInterval(this.nextImage.bind(this), 3000)
+    this.intervalId = setInterval(this.nextImage.bind(this), 5000)
   }
 
   private nextImage() {
