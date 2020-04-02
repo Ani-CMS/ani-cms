@@ -93,6 +93,21 @@ export class ContentfulService {
       })
     )
   )
+
+  films$: Observable<any[]> = from(
+    this.client.getEntries({ content_type: 'films' })
+  ).pipe(
+    map((response: any) =>
+      response.items.map((item) => {
+        return {
+          ...item.fields,
+          richTextConfig: item.fields.freeText
+            ? toRichTextConfig(item.fields.freeText)
+            : null,
+        }
+      })
+    )
+  )
 }
 
 // TODO Video
