@@ -5,11 +5,13 @@ import { map, pluck, switchMap } from 'rxjs/operators'
 import { ContentfulService } from '../../contentful.service'
 import { RichTextConfig } from '../../rich-text/rich-text.component'
 import { Observable } from 'rxjs'
-import { SubheaderConfig } from '../../sub-header/subheader.component'
+import {
+  SubheaderConfig,
+  SubheaderLink,
+  toSubheaderConfig,
+} from '../../sub-header/subheader.component'
 
-export interface Work {
-  linkText: string
-  urlPath: string
+export interface Work extends SubheaderLink {
   richTextConfig: RichTextConfig
 }
 
@@ -29,17 +31,7 @@ export class WorksComponent implements OnInit {
     )
   )
   subheaderConfig$: Observable<SubheaderConfig> = this.works$.pipe(
-    map((works) => {
-      return {
-        links: works.map((work) => {
-          return {
-            linkText: work.linkText,
-            urlPath: '/works/' + work.urlPath,
-          }
-        }),
-        urlSubdirectory: 'works',
-      }
-    })
+    map((works) => toSubheaderConfig(works, 'works'))
   )
 
   constructor(

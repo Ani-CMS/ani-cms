@@ -1,5 +1,21 @@
 import { Component, Input } from '@angular/core'
 
+export const toSubheaderConfig = (
+  subheaderLinks: SubheaderLink[],
+  urlSubdirectory: string
+): SubheaderConfig => {
+  return {
+    links: subheaderLinks.map(
+      (link): SubheaderLink => {
+        return {
+          linkText: link.linkText,
+          urlPath: `/${urlSubdirectory}/${link.urlPath}`,
+        }
+      }
+    ),
+  }
+}
+
 export interface SubheaderLink {
   urlPath: string
   linkText: string
