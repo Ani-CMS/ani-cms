@@ -6,6 +6,7 @@ import { Observable } from 'rxjs'
 import { ContentfulService } from '../../contentful.service'
 import { ActivatedRoute } from '@angular/router'
 import { Work } from '../works/works.component'
+import { SubheaderConfig } from '../../sub-header/subheader.component'
 
 export interface Films {
   linkText: string
@@ -27,6 +28,19 @@ export class FilmsComponent implements OnInit {
         map((films) => films.find((film) => film.urlPath === id))
       )
     )
+  )
+  subheaderConfig$: Observable<SubheaderConfig> = this.films$.pipe(
+    map((films) => {
+      return {
+        links: films.map((film) => {
+          return {
+            linkText: film.linkText,
+            urlPath: film.urlPath,
+          }
+        }),
+        urlSubdirectory: 'films',
+      }
+    })
   )
 
   constructor(

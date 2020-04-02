@@ -1,7 +1,3 @@
-<a
-  *ngFor="let film of films$ | async"
-  [routerLink]="'/films/' + film.urlPath"
-  >{{ film.linkText }}</a
->
+<app-subheader [config]="subheaderConfig$ | async"></app-subheader>
 
 <app-rich-text [config]="(film$ | async)?.richTextConfig"></app-rich-text>
