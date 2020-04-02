@@ -5,6 +5,7 @@ import { map, pluck, switchMap } from 'rxjs/operators'
 import { ContentfulService } from '../../contentful.service'
 import { RichTextConfig } from '../../rich-text/rich-text.component'
 import { Observable } from 'rxjs'
+import { SubheaderConfig } from '../../sub-header/subheader.component'
 
 export interface Work {
   linkText: string
@@ -26,6 +27,19 @@ export class WorksComponent implements OnInit {
         map((works) => works.find((work) => work.urlPath === id))
       )
     )
+  )
+  subheaderConfig$: Observable<SubheaderConfig> = this.works$.pipe(
+    map((works) => {
+      return {
+        links: works.map((work) => {
+          return {
+            linkText: work.linkText,
+            urlPath: work.urlPath,
+          }
+        }),
+        urlSubdirectory: 'works',
+      }
+    })
   )
 
   constructor(
