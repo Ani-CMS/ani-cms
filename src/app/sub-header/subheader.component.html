@@ -1,5 +1,7 @@
-<ul>
-  <li *ngFor="let link of config?.links">
-    <a [routerLink]="link.urlPath">{{ link.linkText }}</a>
-  </li>
-</ul>
+<nav>
+  <ul>
+    <li *ngFor="let link of config?.links">
+      <a [routerLink]="link.urlPath">{{ link.linkText }}</a>
+    </li>
+  </ul>
+</nav>

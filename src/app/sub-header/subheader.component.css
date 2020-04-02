@@ -1,0 +1,77 @@
+nav {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  /*height: inherit;*/
+  line-height: 1.8em;
+  text-transform: uppercase;
+}
+
+ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+a:hover {
+  color: var(--tertiary-color);
+}
+
+a {
+  position: relative;
+}
+
+nav ul li:nth-child(1) a {
+  left: 1em;
+}
+
+nav ul li:nth-child(2) a {
+  left: 21em;
+}
+
+nav ul li:nth-child(3) a {
+  left: 7em;
+}
+
+nav ul li:nth-child(4) a {
+  left: 19em;
+}
+
+nav ul li:nth-child(5) a {
+  left: 15em;
+}
+
+nav ul li:nth-child(6) a {
+  left: 25em;
+}
+
+nav ul li:nth-child(7) a {
+  left: 1em;
+}
+
+nav ul li:nth-child(8) a {
+  left: 17em;
+}
+
+nav ul li:nth-child(9) a {
+  left: 8em;
+}
+
+nav ul li:nth-child(10) a {
+  left: 16em;
+}
+
+nav ul li:nth-child(11) a {
+  left: 2em;
+}
+
+nav ul li:nth-child(12) a {
+  left: 24em;
+}
+
+nav ul li:nth-child(13) a {
+  left: 10em;
+}
+
+nav ul li:nth-child(14) a {
+  left: 3em;
+}

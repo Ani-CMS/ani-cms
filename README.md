@@ -13,4 +13,6 @@
    Other
     - PWA
     - upcoming margin between events needs to be increased -> Challenge Dani
+    - in richtet only add margin bottom, but not to last element
+    - Position absolute better for subheader?
     
