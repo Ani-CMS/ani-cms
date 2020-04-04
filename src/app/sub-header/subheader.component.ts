@@ -2,11 +2,9 @@ import {
   Component,
   ElementRef,
   Input,
-  OnChanges,
   OnDestroy,
   OnInit,
   Renderer2,
-  SimpleChanges,
 } from '@angular/core'
 import { ContentfulService } from '../contentful.service'
 import { tap } from 'rxjs/operators'
@@ -72,7 +70,15 @@ export class SubheaderComponent implements OnInit, OnDestroy {
           anchorElements.forEach((element, index) => {
             const leftMargin = positions[index]?.leftMargin
             if (leftMargin) {
-              this.renderer.setStyle(element, 'left', `${leftMargin}vw`)
+              const vw = Math.max(
+                document.documentElement.clientWidth,
+                window.innerWidth || 0
+              )
+              this.renderer.setStyle(
+                element,
+                'left',
+                vw > 640 ? `${leftMargin}em` : `${leftMargin / 0.9}vw`
+              )
               // this.renderer.setStyle(element, 'left', `${leftMargin}em`)
             }
           })
