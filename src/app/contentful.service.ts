@@ -138,6 +138,9 @@ export class ContentfulService {
   )
 }
 
+const isVideo = (node) => {
+  return node.data.target?.sys.contentType?.sys.id === 'video'
+}
 const isImage = (node) =>
   node.data.target?.fields.file?.contentType === 'image/jpeg'
 const isSlideshow = (node) =>
@@ -156,12 +159,18 @@ const options: Options = {
   renderNode: {
     [BLOCKS.EMBEDDED_ENTRY]: (node, next) => {
       if (isSlideshow(node)) {
-        // Here you can overwrite how specific nodes should be rendered e.g.
-        // return `<div class="slideshow">...</div>`
-        // However we don't want them to be rendered via a string, because
-        // Angular won't instantiate their class. Instead we save their index
-        // an instantiate the component ourselves later.
         return null
+      }
+      if (isVideo(node)) {
+        const { videoLink, width, height } = node.data.target.fields
+        return `<iframe src="${videoLink}"
+          frameborder="0"
+          width="${width}"
+          height="${height}"
+          allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          >
+          </iframe>`
       }
     },
     [BLOCKS.EMBEDDED_ASSET]: (node, next) => {
