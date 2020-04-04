@@ -31,7 +31,7 @@ a {
 }
 
 iframe,
-app-slideshow,
+.slideshow,
 img {
   max-width: calc(100vw - (2 * var(--body-horizontal-padding)));
 }
