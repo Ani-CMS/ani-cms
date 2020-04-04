@@ -20,6 +20,13 @@ ul {
   padding: 0;
 }
 
+@media screen and (max-width: 767px) {
+  ul {
+    margin: 0;
+    font-size: 3vw;
+  }
+}
+
 li {
   display: inline;
   padding: 0;
