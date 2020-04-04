@@ -11,6 +11,7 @@ import {
   SimpleChanges,
   ViewChild,
   ViewContainerRef,
+  ViewEncapsulation,
 } from '@angular/core'
 
 export interface NewComponent {
@@ -28,6 +29,7 @@ export interface RichTextConfig {
   selector: 'app-rich-text',
   templateUrl: './rich-text.component.html',
   styleUrls: ['./rich-text.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class RichTextComponent implements OnDestroy, OnChanges {
   @Input() config: RichTextConfig

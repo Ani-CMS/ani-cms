@@ -1,8 +1,3 @@
-app-rich-text-element {
-  /*display: block;*/
-  /*margin-bottom: var(--vertical-margin);*/
-}
-
-app-rich-text-element p {
-  margin: 0;
+app-rich-text h1 {
+  margin-bottom: var(--vertical-margin);
 }
