@@ -43,7 +43,7 @@ export class ContentfulService {
             }
           }
         )
-        .sort((a, b) => a.index - b.index)
+        .sort((a, b) => b.index - a.index)
     })
   )
 
@@ -60,7 +60,7 @@ export class ContentfulService {
             }
           }
         )
-        .sort((a, b) => a.index - b.index)
+        .sort((a, b) => b.index - a.index)
     })
   )
 
@@ -78,7 +78,7 @@ export class ContentfulService {
             }
           }
         )
-        .sort((a, b) => a.index - b.index)
+        .sort((a, b) => b.index - a.index)
     })
   )
 
