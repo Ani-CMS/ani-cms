@@ -107,14 +107,16 @@ export class ContentfulService {
     this.client.getEntries({ content_type: 'works' })
   ).pipe(
     map((response: any) =>
-      response.items.map((item) => {
-        return {
-          ...item.fields,
-          richTextConfig: item.fields.freeText
-            ? toRichTextConfig(item.fields.freeText)
-            : null,
-        }
-      })
+      response.items
+        .map((item) => {
+          return {
+            ...item.fields,
+            richTextConfig: item.fields.freeText
+              ? toRichTextConfig(item.fields.freeText)
+              : null,
+          }
+        })
+        .sort((a, b) => (a.linkText > b.linkText ? 1 : -1))
     )
   )
 
@@ -122,14 +124,16 @@ export class ContentfulService {
     this.client.getEntries({ content_type: 'films' })
   ).pipe(
     map((response: any) =>
-      response.items.map((item) => {
-        return {
-          ...item.fields,
-          richTextConfig: item.fields.freeText
-            ? toRichTextConfig(item.fields.freeText)
-            : null,
-        }
-      })
+      response.items
+        .map((item) => {
+          return {
+            ...item.fields,
+            richTextConfig: item.fields.freeText
+              ? toRichTextConfig(item.fields.freeText)
+              : null,
+          }
+        })
+        .sort((a, b) => (a.linkText > b.linkText ? 1 : -1))
     )
   )
 }

@@ -27,7 +27,10 @@ export class HomeComponent implements OnInit {
       const worksSubheaderConfig = toSubheaderConfig(works, 'works')
       const filmsSubheaderConfig = toSubheaderConfig(films, 'films')
       const subheaderConfig: SubheaderConfig = {
-        links: [...worksSubheaderConfig.links, ...filmsSubheaderConfig.links],
+        links: [
+          ...worksSubheaderConfig.links,
+          ...filmsSubheaderConfig.links,
+        ].sort((a, b) => (a.linkText > b.linkText ? 1 : -1)),
       }
       return subheaderConfig
     })
