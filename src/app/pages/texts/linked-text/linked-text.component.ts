@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core'
 
 export interface LinkedText {
+  index: number
   title: string
   link?: string
   scrollToLongTextId?: string

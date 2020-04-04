@@ -47,12 +47,16 @@ export class ContentfulService {
     this.client.getEntries({ content_type: 'externalText' })
   ).pipe(
     map((response) => {
-      return response.items.map((item: any) => {
-        return {
-          ...item.fields,
-          link: item.fields.link,
-        }
-      })
+      return response.items
+        .map(
+          (item: any): LinkedText => {
+            return {
+              ...item.fields,
+              link: item.fields.link,
+            }
+          }
+        )
+        .sort((a, b) => a.index - b.index)
     })
   )
 
