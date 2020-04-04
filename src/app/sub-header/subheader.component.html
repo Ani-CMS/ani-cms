@@ -1,7 +1,9 @@
 <nav>
   <ul (innerHtmlRendered)="onInnerHtmlRendered($event)" appMutationObserver>
     <li *ngFor="let link of config?.links">
-      <a [routerLink]="link.urlPath">{{ link.linkText }}</a>
+      <a [routerLink]="link.urlPath" routerLinkActive="active">{{
+        link.linkText
+      }}</a>
     </li>
   </ul>
 </nav>
