@@ -19,12 +19,12 @@ body {
   line-height: 2em;
 }
 
-@media screen and (max-width: 812px) {
-  /* TODO Remove this. Introduced, because of problems on mobile */
-  h1 {
-    font-size: 1.5em;
-  }
-}
+/*@media screen and (max-width: 812px) {*/
+/*  !* TODO Remove this. Introduced, because of problems on mobile *!*/
+/*  h1 {*/
+/*    font-size: 1.5em;*/
+/*  }*/
+/*}*/
 
 h1 {
   font-size: 2em;
@@ -37,6 +37,7 @@ a {
   text-decoration: none;
 }
 
+app-slideshow,
 img {
   max-width: calc(100vw - (2 * var(--body-horizontal-padding)));
 }
