@@ -72,7 +72,8 @@ export class SubheaderComponent implements OnInit, OnDestroy {
           anchorElements.forEach((element, index) => {
             const leftMargin = positions[index]?.leftMargin
             if (leftMargin) {
-              this.renderer.setStyle(element, 'left', `${leftMargin}em`)
+              this.renderer.setStyle(element, 'left', `${leftMargin}vw`)
+              // this.renderer.setStyle(element, 'left', `${leftMargin}em`)
             }
           })
         })
