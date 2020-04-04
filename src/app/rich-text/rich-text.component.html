@@ -1,6 +1,6 @@
 <div
   #container
   (innerHtmlRendered)="onInnerHtmlRendered()"
-  [innerHTML]="config?.richText"
+  [innerHTML]="config?.richText | safe: 'html'"
   appMutationObserver
 ></div>
