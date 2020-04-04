@@ -19,13 +19,6 @@ body {
   line-height: 2em;
 }
 
-/*@media screen and (max-width: 812px) {*/
-/*  !* TODO Remove this. Introduced, because of problems on mobile *!*/
-/*  h1 {*/
-/*    font-size: 1.5em;*/
-/*  }*/
-/*}*/
-
 h1 {
   font-size: 2em;
   text-transform: uppercase;
