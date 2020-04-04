@@ -30,11 +30,13 @@ export class ContentfulService {
     this.client.getEntries({ content_type: 'subHeaderPosition' })
   ).pipe(
     map((response: any) =>
-      response.items.map((item) => {
-        return {
-          ...item.fields,
-        }
-      })
+      response.items
+        .map((item) => {
+          return {
+            ...item.fields,
+          }
+        })
+        .sort((a, b) => a.index - b.index)
     )
   )
 
