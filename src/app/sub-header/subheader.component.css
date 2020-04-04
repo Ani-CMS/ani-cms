@@ -75,3 +75,23 @@ nav ul li:nth-child(13) a {
 nav ul li:nth-child(14) a {
   left: 3em;
 }
+
+nav ul li:nth-child(15) a {
+  left: 13em;
+}
+
+nav ul li:nth-child(16) a {
+  left: -1em;
+}
+
+nav ul li:nth-child(17) a {
+  left: 8em;
+}
+
+nav ul li:nth-child(18) a {
+  left: 20em;
+}
+
+nav ul li:nth-child(19) a {
+  left: 10em;
+}
