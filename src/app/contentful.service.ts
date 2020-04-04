@@ -172,7 +172,7 @@ const options: Options = {
     [INLINES.HYPERLINK]: (node, next) => {
       return `<a href="${node.data.uri}" target="_blank">${next(
         node.content
-      )}</>`
+      )}</a>`
     },
   },
 }
