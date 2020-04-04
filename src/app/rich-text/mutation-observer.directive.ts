@@ -16,7 +16,7 @@ export class MutationObserverDirective implements OnDestroy {
 
   constructor(private el: ElementRef) {
     this._observer = new MutationObserver((mutations) => {
-      this.innerHtmlRendered.emit()
+      this.innerHtmlRendered.emit(mutations)
     })
     this._observer.observe(this.el.nativeElement, {
       attributes: true,

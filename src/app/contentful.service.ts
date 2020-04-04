@@ -14,6 +14,7 @@ import { UpcomingEvent } from './pages/upcoming/upcoming-event/upcoming-event.co
 import { LongText } from './pages/texts/texts.component'
 import { Work } from './pages/works/works.component'
 import { Film } from './pages/films/films.component'
+import { SubheaderPosition } from './sub-header/subheader.component'
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,18 @@ export class ContentfulService {
     environment: 'master',
     accessToken: 'yG8c6btCdKehQU8Of7viYjYcwg9ASsZJsRZ6gEKMJw8',
   })
+
+  subheaderPositions$: Observable<SubheaderPosition[]> = from(
+    this.client.getEntries({ content_type: 'subHeaderPosition' })
+  ).pipe(
+    map((response: any) =>
+      response.items.map((item) => {
+        return {
+          ...item.fields,
+        }
+      })
+    )
+  )
 
   upcomingEvents$: Observable<UpcomingEvent[]> = from(
     this.client.getEntries({ content_type: 'event' })
@@ -119,7 +132,6 @@ export class ContentfulService {
   )
 }
 
-// TODO Video
 const isImage = (node) =>
   node.data.target?.fields.file?.contentType === 'image/jpeg'
 const isSlideshow = (node) =>
