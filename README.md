@@ -11,9 +11,9 @@
    Other
     - PWA
     - upcoming margin between events needs to be increased -> Challenge Dani
-    - in richtet only add margin bottom, but not to last element
-    - Position absolute better for subheader?
-    - TODO Fix sorting on home
+    - in richtext only add margin bottom, but not to last element
+
     
 - works films alphabeitsch ordnen
+
 - films works sollen unter subnav anfaange. querz height with js

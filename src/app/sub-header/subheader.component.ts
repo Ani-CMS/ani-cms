@@ -64,13 +64,13 @@ export class SubheaderComponent implements OnInit, OnDestroy {
     ])
       .pipe(
         tap(([positions]) => {
-          const listElements = Array.from(
-            this.subheaderRef.nativeElement.getElementsByTagName('li')
+          const anchorElements = Array.from(
+            this.subheaderRef.nativeElement.getElementsByTagName('a')
           )
-          listElements.forEach((element, index) => {
+          anchorElements.forEach((element, index) => {
             const leftMargin = positions[index]?.leftMargin
             if (leftMargin) {
-              this.renderer.setStyle(element, 'left', `${leftMargin}px`)
+              this.renderer.setStyle(element, 'left', `${leftMargin}em`)
             }
           })
         })
