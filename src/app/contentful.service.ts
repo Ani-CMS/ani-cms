@@ -29,17 +29,21 @@ export class ContentfulService {
     this.client.getEntries({ content_type: 'event' })
   ).pipe(
     map((response) => {
-      return response.items.map(
-        (item: any): UpcomingEvent => {
-          return {
-            ...item.fields,
-            image: item.fields.image ? item.fields.image.fields.file.url : null,
-            richTextConfig: item.fields.freeText
-              ? toRichTextConfig(item.fields.freeText)
-              : null,
+      return response.items
+        .map(
+          (item: any): UpcomingEvent => {
+            return {
+              ...item.fields,
+              image: item.fields.image
+                ? item.fields.image.fields.file.url
+                : null,
+              richTextConfig: item.fields.freeText
+                ? toRichTextConfig(item.fields.freeText)
+                : null,
+            }
           }
-        }
-      )
+        )
+        .sort((a, b) => a.index - b.index)
     })
   )
 

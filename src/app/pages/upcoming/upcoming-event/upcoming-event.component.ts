@@ -2,6 +2,7 @@ import { Component, Input, ViewEncapsulation } from '@angular/core'
 import { RichTextConfig } from '../../../rich-text/rich-text.component'
 
 export interface UpcomingEvent {
+  index: number
   title: string
   link?: string
   description?: string
