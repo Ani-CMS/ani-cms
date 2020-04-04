@@ -2,9 +2,11 @@ import {
   Component,
   ElementRef,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Renderer2,
+  SimpleChanges,
 } from '@angular/core'
 import { ContentfulService } from '../contentful.service'
 import { tap } from 'rxjs/operators'
@@ -85,8 +87,10 @@ export class SubheaderComponent implements OnInit, OnDestroy {
   }
 
   onInnerHtmlRendered(mutations) {
-    const listElementsRendered =
-      mutations[0].addedNodes[0].nodeName !== '#comment' // ngFor renders a comment
+    const withoutComments = [...mutations].filter(
+      (mutation) => mutation.addedNodes[0].nodeName !== '#comment'
+    )
+    const listElementsRendered = withoutComments.length > 0
     if (listElementsRendered) {
       this.liRenderedSubject.next()
     }
