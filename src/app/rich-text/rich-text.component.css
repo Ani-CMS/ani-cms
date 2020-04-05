@@ -1,3 +1,4 @@
-app-rich-text h1 {
+app-rich-text h1,
+.slideshow {
   margin-bottom: var(--vertical-margin);
 }
