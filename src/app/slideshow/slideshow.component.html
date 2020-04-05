@@ -1,5 +1,10 @@
-<div [ngStyle]="{ width: config.width + 'px' }" class="slideshow">
-  <div [ngStyle]="{ 'padding-bottom': config.height / config.width * 100 + '%' }">
+<div
+  [ngStyle]="{ width: config.width + 'px' }"
+  class="slideshow-image-container"
+>
+  <div
+    [ngStyle]="{ 'padding-bottom': (config.height / config.width) * 100 + '%' }"
+  >
     <img
       (load)="onImageLoad()"
       *ngFor="let src of config.imageUrls; let i = index"
@@ -7,11 +12,11 @@
       [src]="src"
     />
   </div>
-  <div class="button-container">
-    <button
-      (click)="onButtonClick(i)"
-      *ngFor="let src of config.imageUrls; let i = index"
-      [ngClass]="i === imageIndex ? 'active' : null"
-    ></button>
-  </div>
+</div>
+<div class="button-container">
+  <button
+    (click)="onButtonClick(i)"
+    *ngFor="let src of config.imageUrls; let i = index"
+    [ngClass]="i === imageIndex ? 'active' : null"
+  ></button>
 </div>
