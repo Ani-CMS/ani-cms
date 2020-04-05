@@ -12,11 +12,11 @@
       [src]="src"
     />
   </div>
-</div>
-<div class="button-container">
-  <button
-    (click)="onButtonClick(i)"
-    *ngFor="let src of config.imageUrls; let i = index"
-    [ngClass]="i === imageIndex ? 'active' : null"
-  ></button>
+  <div class="button-container">
+    <button
+      (click)="onButtonClick(i)"
+      *ngFor="let src of config.imageUrls; let i = index"
+      [ngClass]="i === imageIndex ? 'active' : null"
+    ></button>
+  </div>
 </div>
