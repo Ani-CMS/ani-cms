@@ -1,3 +1,7 @@
 app-rich-text h1 {
   margin-bottom: var(--vertical-margin);
 }
+
+app-rich-text p:empty {
+  margin: 0;
+}
