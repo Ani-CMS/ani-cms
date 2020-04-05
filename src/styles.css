@@ -2,9 +2,11 @@
   --primary-color: #003080;
   --secondary-color: #098b8b;
   --tertiary-color: #a00020;
+
+  --header-top: 20px;
+  --body-horizontal-padding: 3vw;
   --vertical-margin: 30px;
   --text-max-width: 750px;
-  --body-horizontal-padding: 3vw;
 }
 
 html {
@@ -17,6 +19,11 @@ body {
   padding: 0 var(--body-horizontal-padding);
   color: var(--primary-color);
   line-height: 2em;
+}
+
+router-outlet + * {
+  display: block;
+  margin-top: calc(3 * var(--header-top));
 }
 
 h1 {
