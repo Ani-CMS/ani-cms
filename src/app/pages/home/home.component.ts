@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core'
 import { forkJoin, Observable } from 'rxjs'
 import { Work } from '../works/works.component'
 import { map } from 'rxjs/operators'
@@ -9,13 +9,16 @@ import {
 import { Title } from '@angular/platform-browser'
 import { ContentfulService } from '../../contentful.service'
 import { Film } from '../films/films.component'
+import { UserClickedOnceService } from './user-clicked-once.service'
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+  userClickedOnce = this.userClickedOnceService.userClickedOnce
+
   works$: Observable<Work[]> = this.contentfulService.works$
   films$: Observable<Film[]> = this.contentfulService.films$
 
@@ -36,12 +39,24 @@ export class HomeComponent implements OnInit {
     })
   )
 
+  @HostListener('document:click')
+  onUserClicked() {
+    this.userClickedOnceService.userClickedOnce = true
+    this.userClickedOnce = true
+  }
+
   constructor(
     private title: Title,
-    private contentfulService: ContentfulService
+    private contentfulService: ContentfulService,
+    private userClickedOnceService: UserClickedOnceService
   ) {}
 
   ngOnInit(): void {
     this.title.setTitle('Ani Schulze')
+  }
+
+  ngOnDestroy(): void {
+    // When he is navigating
+    this.onUserClicked()
   }
 }

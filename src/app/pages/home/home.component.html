@@ -1,1 +1,4 @@
-<app-subheader [config]="subheaderConfig$ | async"></app-subheader>
+<app-subheader
+  *ngIf="userClickedOnce"
+  [config]="subheaderConfig$ | async"
+></app-subheader>
