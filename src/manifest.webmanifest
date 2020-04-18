@@ -2,7 +2,7 @@
   "name": "ani",
   "short_name": "ani",
   "theme_color": "#003080",
-  "background_color": "#fafafa",
+  "background_color": "#ffffff",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
