@@ -6,7 +6,7 @@ import {
   SubheaderConfig,
   toSubheaderConfig,
 } from '../../sub-header/subheader.component'
-import { Title } from '@angular/platform-browser'
+import { Meta, Title } from '@angular/platform-browser'
 import { ContentfulService } from '../../contentful.service'
 import { Film } from '../films/films.component'
 import { UserClickedOnceService } from './user-clicked-once.service'
@@ -47,12 +47,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private title: Title,
+    private meta: Meta,
     private contentfulService: ContentfulService,
     private userClickedOnceService: UserClickedOnceService
   ) {}
 
   ngOnInit(): void {
+    // TODO Load the title and meta tags from the CMS as well
     this.title.setTitle('Ani Schulze')
+    // this.meta.addTag('description', '...')
   }
 
   ngOnDestroy(): void {
