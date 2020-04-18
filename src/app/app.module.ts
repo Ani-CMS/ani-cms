@@ -17,6 +17,8 @@ import { MutationObserverDirective } from './rich-text/mutation-observer.directi
 import { RichTextComponent } from './rich-text/rich-text.component'
 import { SafePipe } from './safe.pipe'
 import { SubheaderComponent } from './sub-header/subheader.component'
+import { ServiceWorkerModule } from '@angular/service-worker'
+import { environment } from '../environments/environment'
 
 @NgModule({
   declarations: [
@@ -36,7 +38,13 @@ import { SubheaderComponent } from './sub-header/subheader.component'
     SafePipe,
     SubheaderComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

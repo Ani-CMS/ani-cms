@@ -17,6 +17,7 @@
     "@angular/platform-browser": "~9.0.0",
     "@angular/platform-browser-dynamic": "~9.0.0",
     "@angular/router": "~9.0.0",
+    "@angular/service-worker": "~9.0.0",
     "@contentful/rich-text-html-renderer": "^13.4.0",
     "contentful": "^7.14.0",
     "rxjs": "~6.5.4",
