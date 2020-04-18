@@ -1,7 +1,7 @@
 {
   "name": "ani",
   "short_name": "ani",
-  "theme_color": "#1976d2",
+  "theme_color": "#003080",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",
