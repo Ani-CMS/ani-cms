@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { createClient } from 'contentful'
 import { from, Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { map, shareReplay } from 'rxjs/operators'
 import { LinkedText } from './pages/texts/linked-text/linked-text.component'
 import {
   documentToHtmlString,
@@ -117,7 +117,8 @@ export class ContentfulService {
           }
         })
         .sort((a, b) => (a.index > b.index ? 1 : -1))
-    )
+    ),
+    shareReplay(1)
   )
 
   films$: Observable<Film[]> = from(
@@ -126,6 +127,7 @@ export class ContentfulService {
     map((response: any) =>
       response.items
         .map((item) => {
+          console.log(item)
           return {
             ...item.fields,
             richTextConfig: item.fields.freeText
@@ -134,7 +136,8 @@ export class ContentfulService {
           }
         })
         .sort((a, b) => (a.index > b.index ? 1 : -1))
-    )
+    ),
+    shareReplay(1)
   )
 }
 
@@ -172,6 +175,9 @@ const options: Options = {
           >
           </iframe>`
       }
+    },
+    [BLOCKS.PARAGRAPH]: (node, next) => {
+      return `<p>${next(node.content).replace(/\\n/g, '<br/>')}</p>`
     },
     [BLOCKS.EMBEDDED_ASSET]: (node, next) => {
       if (isImage(node)) {
