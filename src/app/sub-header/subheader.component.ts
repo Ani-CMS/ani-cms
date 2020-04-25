@@ -101,8 +101,10 @@ export class SubheaderComponent implements OnInit, OnDestroy {
               )
               this.renderer.setStyle(
                 element,
-                'left',
-                vw > 640 ? `${leftMargin}em` : `${leftMargin / 0.9}vw`
+                'transform',
+                vw > 640
+                  ? `translateX(${leftMargin}em)`
+                  : `translateX(${leftMargin / 0.9}vw)`
               )
               // this.renderer.setStyle(element, 'left', `${leftMargin}em`)
             }
