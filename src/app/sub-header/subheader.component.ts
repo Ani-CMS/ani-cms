@@ -1,6 +1,7 @@
 import {
   Component,
   ElementRef,
+  HostListener,
   Input,
   OnDestroy,
   OnInit,
@@ -50,6 +51,10 @@ export class SubheaderComponent implements OnInit, OnDestroy {
   liRenderedSubject = new ReplaySubject()
 
   @Input() config: SubheaderConfig
+  showSubheader = true
+  @HostListener('window:scroll') onScrollEvent() {
+    this.showSubheader = document.documentElement.scrollTop === 0
+  }
 
   constructor(
     private contentfulService: ContentfulService,
@@ -58,7 +63,27 @@ export class SubheaderComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.subscription = combineLatest([
+    this.subscription = this.changeLeftMargins()
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe()
+    }
+  }
+
+  onInnerHtmlRendered(mutations) {
+    const withoutComments = [...mutations].filter(
+      (mutation) => mutation.addedNodes[0].nodeName !== '#comment'
+    )
+    const listElementsRendered = withoutComments.length > 0
+    if (listElementsRendered) {
+      this.liRenderedSubject.next()
+    }
+  }
+
+  changeLeftMargins(): Subscription {
+    return combineLatest([
       this.contentfulService.subheaderPositions$,
       this.liRenderedSubject.asObservable(),
     ])
@@ -85,21 +110,5 @@ export class SubheaderComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe()
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe()
-    }
-  }
-
-  onInnerHtmlRendered(mutations) {
-    const withoutComments = [...mutations].filter(
-      (mutation) => mutation.addedNodes[0].nodeName !== '#comment'
-    )
-    const listElementsRendered = withoutComments.length > 0
-    if (listElementsRendered) {
-      this.liRenderedSubject.next()
-    }
   }
 }

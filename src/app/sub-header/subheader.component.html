@@ -1,4 +1,4 @@
-<nav>
+<nav *ngIf="showSubheader">
   <ul (innerHtmlRendered)="onInnerHtmlRendered($event)" appMutationObserver>
     <li *ngFor="let link of config?.links">
       <a [routerLink]="link.urlPath" routerLinkActive="active">{{
