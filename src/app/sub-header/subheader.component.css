@@ -23,3 +23,12 @@ a:hover {
 a {
   display: inline-block;
 }
+
+@media screen and (max-width: 767px) {
+  li {
+    line-height: 1.5;
+  }
+  a {
+    font-size: 0.9rem;
+  }
+}
