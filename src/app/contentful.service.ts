@@ -127,7 +127,6 @@ export class ContentfulService {
     map((response: any) =>
       response.items
         .map((item) => {
-          console.log(item)
           return {
             ...item.fields,
             richTextConfig: item.fields.freeText
