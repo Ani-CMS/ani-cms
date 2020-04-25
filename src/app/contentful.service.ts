@@ -116,7 +116,7 @@ export class ContentfulService {
               : null,
           }
         })
-        .sort((a, b) => (a.linkText > b.linkText ? 1 : -1))
+        .sort((a, b) => (a.index > b.index ? 1 : -1))
     )
   )
 
@@ -133,7 +133,7 @@ export class ContentfulService {
               : null,
           }
         })
-        .sort((a, b) => (a.linkText > b.linkText ? 1 : -1))
+        .sort((a, b) => (a.index > b.index ? 1 : -1))
     )
   )
 }
