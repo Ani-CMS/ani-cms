@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewEncapsulation } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 import { RichTextConfig } from '../../rich-text/rich-text.component'
 import { map, pluck, switchMap } from 'rxjs/operators'
@@ -19,6 +19,7 @@ export interface Film extends SubheaderLink {
   selector: 'app-films',
   templateUrl: './films.component.html',
   styleUrls: ['./films.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class FilmsComponent implements OnInit {
   id$ = this.route.params.pipe(pluck('id'))

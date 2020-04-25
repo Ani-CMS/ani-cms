@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewEncapsulation } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 import { ActivatedRoute } from '@angular/router'
 import { map, pluck, switchMap } from 'rxjs/operators'
@@ -19,6 +19,7 @@ export interface Work extends SubheaderLink {
   selector: 'app-works',
   templateUrl: './works.component.html',
   styleUrls: ['./works.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class WorksComponent implements OnInit {
   id$ = this.route.params.pipe(pluck('id'))
