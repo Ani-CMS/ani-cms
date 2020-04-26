@@ -25,7 +25,7 @@ export class TextsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.title.setTitle('ABOUT')
+    this.title.setTitle('TEXTS')
   }
 
   onUp() {
