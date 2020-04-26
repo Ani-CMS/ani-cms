@@ -1,4 +1,8 @@
-app-rich-text {
+app-about app-rich-text {
   margin: var(--vertical-margin) 0;
   display: block;
+}
+
+app-about app-rich-text p {
+  max-width: var(--text-max-width);
 }

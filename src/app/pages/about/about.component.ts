@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewEncapsulation } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 import { ContentfulService } from '../../contentful.service'
 import { Observable } from 'rxjs'
@@ -8,6 +8,7 @@ import { RichTextConfig } from '../../rich-text/rich-text.component'
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AboutComponent implements OnInit {
   richTextConfig$: Observable<RichTextConfig> = this.contentful.about$
