@@ -5,9 +5,12 @@
 
 <span *ngIf="config.description">{{ config.description }}</span>
 <div *ngIf="config.from" class="date">
-  <span *ngIf="config.from">{{ config.from | date: 'dd/MM/y HH:mm' }}</span>
+  <!--  <span *ngIf="config.from">{{ config.from | date: 'dd/MM/y HH:mm' }}</span>-->
+  <!-- TODO Show hours only if not 00:00 or boolean field -->
+  <span *ngIf="config.from">{{ config.from | date: 'dd/MM/y' }}</span>
   <span *ngIf="config.until">
-    - {{ config.until | date: 'dd/MM/y HH:mm' }}</span
+    <!--    - {{ config.until | date: 'dd/MM/y HH:mm' }}</span-->
+    - {{ config.until | date: 'dd/MM/y' }}</span
   >
 </div>
 <span *ngIf="config.location">{{ config.location }}</span>
