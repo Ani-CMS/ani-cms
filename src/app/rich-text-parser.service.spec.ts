@@ -11,6 +11,6 @@ describe('RichTextParserService', () => {
   })
 
   it('should be created', () => {
-    expect(service).toBeFalsy()
+    expect(service).toBeTruthy()
   })
 })
