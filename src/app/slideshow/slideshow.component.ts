@@ -15,7 +15,7 @@ export class SlideshowComponent implements OnInit, OnDestroy {
   @Input() config: Slideshow
 
   public imageIndex = 0
-  private intervalId: number
+  private intervalId: any
 
   ngOnInit(): void {}
 
