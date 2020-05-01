@@ -1,5 +1,4 @@
 import { Component } from '@angular/core'
-import { ContentfulService } from './contentful.service'
 
 @Component({
   selector: 'app-root',
@@ -7,5 +6,5 @@ import { ContentfulService } from './contentful.service'
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor(private contentfulService: ContentfulService) {}
+  constructor() {}
 }

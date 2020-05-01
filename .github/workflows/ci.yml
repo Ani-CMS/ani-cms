@@ -10,13 +10,13 @@ jobs:
   test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
     - run: npm install
-    - run: npm test
-          
-          
+    - run: npm run test:ci
+
+
