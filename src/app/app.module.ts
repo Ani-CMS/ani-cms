@@ -17,6 +17,7 @@ import { MutationObserverDirective } from './rich-text/mutation-observer.directi
 import { RichTextComponent } from './rich-text/rich-text.component'
 import { SafePipe } from './safe.pipe'
 import { SubheaderComponent } from './sub-header/subheader.component'
+import { OverlayImageComponent } from './overlay-image/overlay-image.component'
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { SubheaderComponent } from './sub-header/subheader.component'
     RichTextComponent,
     SafePipe,
     SubheaderComponent,
+    OverlayImageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
