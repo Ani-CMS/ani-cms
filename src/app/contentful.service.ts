@@ -15,6 +15,10 @@ import { LongText } from './pages/texts/texts.component'
 import { Work } from './pages/works/works.component'
 import { Film } from './pages/films/films.component'
 import { SubheaderPosition } from './sub-header/subheader.component'
+import {
+  OverlayImage,
+  OverlayImageComponent,
+} from './overlay-image/overlay-image.component'
 
 @Injectable({
   providedIn: 'root',
@@ -156,6 +160,17 @@ const toSlideshow = (node): Slideshow => {
     ),
   }
 }
+const isOverlayImage = (node) =>
+  !!node.data.target?.fields.description &&
+  node.data.target?.fields.file?.contentType === 'image/jpeg'
+const toOverlayImage = (node): OverlayImage => {
+  return {
+    src: node.data.target.fields.file.url,
+    figcaption: node.data.target?.fields.description,
+    width: node.data.target.fields.file.details.image.width,
+    height: node.data.target.fields.file.details.image.height,
+  }
+}
 
 const options: Options = {
   renderNode: {
@@ -179,6 +194,9 @@ const options: Options = {
       return `<p>${next(node.content).replace(/\\n/g, '<br/>')}</p>`
     },
     [BLOCKS.EMBEDDED_ASSET]: (node, next) => {
+      if (isOverlayImage(node)) {
+        return null
+      }
       if (isImage(node)) {
         return `<img src="${node.data.target.fields.file.url}"/>`
       }
@@ -199,6 +217,13 @@ const toRichTextConfig = (richTextField: any): RichTextConfig => {
       newComponents.push({
         config: toSlideshow(node),
         component: SlideshowComponent,
+        index,
+      })
+    }
+    if (isOverlayImage(node)) {
+      newComponents.push({
+        config: toOverlayImage(node),
+        component: OverlayImageComponent,
         index,
       })
     }
