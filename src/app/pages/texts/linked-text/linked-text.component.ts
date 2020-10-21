@@ -21,6 +21,9 @@ export class LinkedTextComponent implements OnInit {
   ngOnInit(): void {}
 
   onLingToLongTextIdClick() {
+    if (!this.config.scrollToLongTextId) {
+      return
+    }
     document
       .querySelector(`[data-id="${this.config.scrollToLongTextId}"]`)
       .scrollIntoView({ behavior: 'smooth' })
